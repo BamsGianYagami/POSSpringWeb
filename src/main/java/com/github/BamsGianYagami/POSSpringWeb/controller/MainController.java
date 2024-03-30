@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+// import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.github.BamsGianYagami.POSSpringWeb.dto.AddItemCheckoutDTO;
 import com.github.BamsGianYagami.POSSpringWeb.dto.LoginDTO;
 
 @Controller
@@ -64,6 +65,7 @@ public class MainController {
         map.put("qty", 20);
         collectMap.add(map);
         model.addAttribute("checkout", collectMap);
+        model.addAttribute("inputItem", new AddItemCheckoutDTO());
         return "checkout";
     }
 }
