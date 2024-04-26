@@ -1,0 +1,198 @@
+2024-04-06 01:52:06.361444+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 01:52:06.453305+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 01:52:06.506307+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 01:52:06.506307+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 01:52:06.506307+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 01:52:06.670277+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:22:54.046403+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:23:02.167560+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:23:31.881094+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:47:14.709780+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:47:17.099347+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:47:17.101270+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:47:18.038273+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 02:47:22.319251+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:12:10.597504+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:12:11.071755+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:12:11.073756+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:12:11.074784+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:12:15.125064+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:26:16.280797+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:26:23.309363+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:26:23.704394+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:26:23.704394+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:39.720997+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:39.887619+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:39.893620+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:39.893620+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:58.852952+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:58.950164+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:59.062164+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:59.063546+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:37:59.064164+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:38:17.184824+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:38:17.336823+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:38:17.431827+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:38:17.432825+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:38:17.433827+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:39:32.122887+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:39:32.171315+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:39:32.171315+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:39:32.171315+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:41:36.941950+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:41:37.076798+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:41:37.076798+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:41:37.076798+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:43:59.727217+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:43:59.788772+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:43:59.788772+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:43:59.788772+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:44:08.658856+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:44:08.832831+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:44:08.930119+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:44:08.931125+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:44:08.931125+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:46:08.423183+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:46:08.571226+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:46:08.577103+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:46:08.577103+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:49:45.251835+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:49:45.432783+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:49:45.543078+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:49:45.544080+07:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-06 03:49:45.545079+07:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 [42104-224]
+2024-04-25 14:30:46.311341+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 where ui1_0.id=? [42104-224]
+2024-04-25 14:32:04.906034+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 where ui1_0.id=? [42104-224]
+2024-04-25 14:37:02.845727+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_INFO" not found (this database is empty); SQL statement:
+select ui1_0.id,ui1_0.email,ui1_0.name,ui1_0.password,ui1_0.roles from user_info ui1_0 where ui1_0.id=? [42104-224]

@@ -6,6 +6,9 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/main/addStock">Add Stock</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/main/checkout">Checkout</a>
       </li>
       <li class="nav-item dropdown">
