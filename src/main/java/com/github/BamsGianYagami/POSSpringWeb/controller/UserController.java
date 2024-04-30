@@ -1,5 +1,7 @@
 package com.github.BamsGianYagami.POSSpringWeb.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +33,9 @@ public class UserController {
     
     @GetMapping
     @PermitAll
-    public UserInfo getUser(){
-        log.info("hello GET User Info");
-        UserInfo userInfo = new UserInfo();
-        return userInfo;
+    public List<UserInfo> getUser(@RequestBody UserInfo userInfo){
+        String username = userInfo.getName();
+        return username.isEmpty() ? userInfoService.getAllUser() : userInfoService.getUser(username);
     }
 
     @PostMapping

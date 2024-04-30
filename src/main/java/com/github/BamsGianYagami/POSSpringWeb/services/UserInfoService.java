@@ -45,7 +45,15 @@ public class UserInfoService implements UserDetailsService {
 		// Converting userDetail to UserDetails 
 		return userDetail.map(UserInfoDetails::new) 
 				.orElseThrow(() -> new UsernameNotFoundException("User not found " + username)); 
-	} 
+	}
+
+	public List<UserInfo> getAllUser(){
+		return repository.findAll();
+	}
+
+	public List<UserInfo> getUser(String username){
+		return repository.findByName(username).stream().toList();
+	}
 
 	public String addUser(UserInfo userInfo) { 
 		log.info("tambah User!");
