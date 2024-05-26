@@ -2,6 +2,7 @@ package com.github.BamsGianYagami.POSSpringWeb.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +18,10 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
 
 @Configuration
 @EnableWebSecurity
@@ -33,7 +37,8 @@ public class WebSecurityConfig {
 				// .requestMatchers("*/css/*", "*/js/*", "*/svg/*", "test.html",
 				// "*jsp*", "*index*", "*jsp*", "/WEB-INF/jsp/index.jsp",
 				// "/main/login", "/test/test", "/h2-console").permitAll()
-				.anyRequest().authenticated()
+				// .anyRequest().authenticated()
+				.anyRequest().permitAll()
 			)
 			.formLogin((form) -> form
 				.loginPage("/")
@@ -45,6 +50,7 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
+	//in memory user manager
 	@Bean
 	public UserDetailsService userDetailsService() {
 		UserDetails user =

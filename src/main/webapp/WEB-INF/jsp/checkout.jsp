@@ -35,7 +35,7 @@
               </tbody>
           </table>
         </div>
-        <div class="container-fluid col border border-info border-2 my-2 py-sm-2 px-sm-2">
+        <div class="container-fluid col-4 border border-info border-2 my-2 py-sm-2 px-sm-2">
         <form:form action="" method="post" modelAttribute="inputItem">
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
             <form:label class="form-label" path="itemId">Item ID: </form:label> <form:input type="text" path="itemId" class="form-control"/>

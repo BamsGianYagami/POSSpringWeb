@@ -42,6 +42,7 @@ public class UserInfoService implements UserDetailsService {
 
 		Optional<UserInfo> userDetail = repository.findByName(username); 
 
+		log.info("found userDetail of {} ? {}",username, userDetail.isPresent());
 		// Converting userDetail to UserDetails 
 		return userDetail.map(UserInfoDetails::new) 
 				.orElseThrow(() -> new UsernameNotFoundException("User not found " + username)); 

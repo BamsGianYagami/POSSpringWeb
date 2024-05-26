@@ -52,6 +52,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         try {
+            log.info("securityContext: {}",SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
             if (username != null && SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
                 log.info("masuk username: {}", username); 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username); 

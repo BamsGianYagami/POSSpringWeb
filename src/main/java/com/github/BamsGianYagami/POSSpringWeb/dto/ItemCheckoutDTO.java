@@ -8,10 +8,10 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddItemCheckoutDTO {
+public class ItemCheckoutDTO {
     int itemId;
     String itemName;
-    String itemPrice;
+    Integer itemPrice;
     int qty;
     int totalPrice;
 }

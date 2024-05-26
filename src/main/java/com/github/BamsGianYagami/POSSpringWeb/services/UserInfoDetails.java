@@ -18,6 +18,7 @@ public class UserInfoDetails implements UserDetails {
 	private List<GrantedAuthority> authorities; 
 
 	public UserInfoDetails(UserInfo userInfo) { 
+		System.out.println("run map!");
 		name = userInfo.getName(); 
 		password = userInfo.getPassword(); 
 		authorities = Arrays.stream(userInfo.getRoles().split(",")) 

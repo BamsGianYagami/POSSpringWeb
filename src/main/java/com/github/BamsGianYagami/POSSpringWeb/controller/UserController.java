@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,12 +31,17 @@ public class UserController {
 
     @Autowired
     UserInfoService userInfoService;
-    
+
     @GetMapping
     @PermitAll
-    public List<UserInfo> getUser(@RequestBody UserInfo userInfo){
-        String username = userInfo.getName();
-        return username.isEmpty() ? userInfoService.getAllUser() : userInfoService.getUser(username);
+    public List<UserInfo> getAllUser(){
+        return userInfoService.getAllUser();
+    }
+    
+    @GetMapping("{username}")
+    @PermitAll
+    public List<UserInfo> getUser(@PathVariable String username){
+        return userInfoService.getUser(username);
     }
 
     @PostMapping
@@ -53,10 +59,10 @@ public class UserController {
         return ResponseEntity.ok(info);
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     @RolesAllowed("Admin")
-    public ResponseEntity<?> deleteUser(@RequestBody UserInfo userInfo){
-        String info = userInfoService.deleteUser(userInfo.getId());
+    public ResponseEntity<?> deleteUser(@PathVariable Integer id){
+        String info = userInfoService.deleteUser(id);
         return ResponseEntity.ok(info);
     }
 }

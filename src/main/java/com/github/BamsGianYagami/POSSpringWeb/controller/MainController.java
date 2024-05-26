@@ -24,9 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.github.BamsGianYagami.POSSpringWeb.dto.AddItemCheckoutDTO;
+import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
+import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
 import com.github.BamsGianYagami.POSSpringWeb.dto.LoginDTO;
 import com.github.BamsGianYagami.POSSpringWeb.services.JwtService;
+import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
 import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
 
 import jakarta.annotation.security.RolesAllowed;
@@ -47,6 +49,9 @@ public class MainController {
 
     @Autowired
     JwtService jwtService;
+
+    @Autowired
+    StockService stockService;
   
     @Autowired
     private AuthenticationManager authenticationManager; 
@@ -115,14 +120,29 @@ public class MainController {
         map.put("qty", 20);
         collectMap.add(map);
         model.addAttribute("checkout", collectMap);
-        model.addAttribute("inputItem", new AddItemCheckoutDTO());
+        model.addAttribute("inputItem", new ItemCheckoutDTO());
         return "checkout";
     }
 
     @GetMapping("addStock")
     public String addStock(Model model){
         log.info("User {} masuk ke addStock", model.getAttribute("username"));
-        model.addAttribute("inputItem", new AddItemCheckoutDTO());
+        model.addAttribute("inputItem", new ItemCheckoutDTO());
         return "add-stock";
+    }
+    
+    @PostMapping("addStock")
+    public RedirectView addStock(@ModelAttribute("stock") Stock stock,RedirectAttributes redirectAttributes){
+        final RedirectView redirectView = new RedirectView("/main/stocks", true);
+        Stock savedStock = stockService.addStock(stock);
+        redirectAttributes.addFlashAttribute("savedBook", savedStock);
+        redirectAttributes.addFlashAttribute("savedBookSuccess", true);
+        return redirectView;
+    }
+
+    @GetMapping("stocks")
+    public String viewBooks(Model model) {
+        model.addAttribute("stocks", stockService.getAllStock());
+        return "view-stock";
     }
 }
