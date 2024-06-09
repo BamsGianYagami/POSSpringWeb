@@ -163,7 +163,6 @@ public class MainController {
         log.info("User {} masuk ke deleteStock {}", model.getAttribute("username"), id);
         final RedirectView redirectView = new RedirectView("/main/stocks", true);
         String message = stockService.deleteStock(id);
-        model.addAttribute("deleted", message);
         redirectAttributes.addFlashAttribute("message", message);
         redirectAttributes.addFlashAttribute("isDeleting", true);
         return redirectView;
@@ -171,6 +170,7 @@ public class MainController {
 
     @GetMapping("stocks")
     public String viewStock(Model model) {
+        log.info("stock count: {} ", stockService.getAllStock().size());
         model.addAttribute("stocks", stockService.getAllStock());
         return "view-stock";
     }
