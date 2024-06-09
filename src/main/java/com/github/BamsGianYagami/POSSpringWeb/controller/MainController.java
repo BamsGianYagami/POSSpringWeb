@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -127,7 +128,7 @@ public class MainController {
     @GetMapping("addStock")
     public String addStock(Model model){
         log.info("User {} masuk ke addStock", model.getAttribute("username"));
-        model.addAttribute("inputItem", new ItemCheckoutDTO());
+        model.addAttribute("stock", new Stock());
         return "add-stock";
     }
     
@@ -135,13 +136,41 @@ public class MainController {
     public RedirectView addStock(@ModelAttribute("stock") Stock stock,RedirectAttributes redirectAttributes){
         final RedirectView redirectView = new RedirectView("/main/stocks", true);
         Stock savedStock = stockService.addStock(stock);
-        redirectAttributes.addFlashAttribute("savedBook", savedStock);
-        redirectAttributes.addFlashAttribute("savedBookSuccess", true);
+        redirectAttributes.addFlashAttribute("savedStock", savedStock);
+        redirectAttributes.addFlashAttribute("isSaving", true);
+        return redirectView;
+    }
+
+    @GetMapping("editStock/{id}")
+    public String editStock(Model model, @PathVariable Integer id){
+        log.info("User {} masuk ke editStock {}", model.getAttribute("username"), id);
+        Stock savedStock = stockService.getStock(id);
+        model.addAttribute("stock", savedStock);
+        return "edit-stock";
+    }
+
+    @PostMapping("editStock/{id}")
+    public RedirectView editStock(@ModelAttribute("stock") Stock stock,RedirectAttributes redirectAttributes){
+        final RedirectView redirectView = new RedirectView("/main/stocks", true);
+        Stock savedStock = stockService.updateStock(stock);
+        redirectAttributes.addFlashAttribute("savedStock", savedStock);
+        redirectAttributes.addFlashAttribute("isEditing", true);
+        return redirectView;
+    }
+
+    @GetMapping("deleteStock/{id}")
+    public RedirectView deleteStock(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes){
+        log.info("User {} masuk ke deleteStock {}", model.getAttribute("username"), id);
+        final RedirectView redirectView = new RedirectView("/main/stocks", true);
+        String message = stockService.deleteStock(id);
+        model.addAttribute("deleted", message);
+        redirectAttributes.addFlashAttribute("message", message);
+        redirectAttributes.addFlashAttribute("isDeleting", true);
         return redirectView;
     }
 
     @GetMapping("stocks")
-    public String viewBooks(Model model) {
+    public String viewStock(Model model) {
         model.addAttribute("stocks", stockService.getAllStock());
         return "view-stock";
     }

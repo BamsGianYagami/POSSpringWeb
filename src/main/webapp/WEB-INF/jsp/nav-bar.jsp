@@ -22,7 +22,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/main/checkout">Checkout</a>
       </li>
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
         </a>
@@ -35,7 +35,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+      </li> -->
     </ul>
     <!-- <form class="align-self-end">
       <div class="row">

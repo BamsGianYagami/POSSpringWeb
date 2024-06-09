@@ -34,6 +34,9 @@
                   </c:forEach>
               </tbody>
           </table>
+          <div class="container-fluid mb-3 border border-1 my-2 py-sm-2 px-sm-2">
+            <b class="d-flex justify-content-end fs-4">Total Harga ${grandTotal}</b>
+          </div>
         </div>
         <div class="container-fluid col-4 border border-info border-2 my-2 py-sm-2 px-sm-2">
         <form:form action="" method="post" modelAttribute="inputItem">

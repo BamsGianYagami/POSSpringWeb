@@ -12,7 +12,7 @@
       <jsp:include page="nav-bar.jsp"/>
       <div class="container-fluid row">
         <div class="container-fluid col border border-info border-2 my-2 py-sm-2 px-sm-2">
-        <form:form action="main/addStock" method="post" modelAttribute="stock">
+        <form:form action="" method="post" modelAttribute="stock">
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
             <form:label class="form-label" path="itemId">Item ID: </form:label> <form:input type="text" path="itemId" class="form-control"/>
           </div>
