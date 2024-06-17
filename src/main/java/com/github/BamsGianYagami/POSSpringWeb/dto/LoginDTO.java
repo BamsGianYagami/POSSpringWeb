@@ -12,4 +12,5 @@ public class LoginDTO {
     
     String username;
     String password;
+    boolean loginFailed;
 }

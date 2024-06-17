@@ -1,4 +1,4 @@
-package com.github.BamsGianYagami.POSSpringWeb.controller;
+package com.github.BamsGianYagami.POSSpringWeb.controller.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
 import jakarta.annotation.security.PermitAll;
 
 @RestController
-@RequestMapping(path="stock")
+@RequestMapping(path="api/stock")
 public class StockController {
     public static Logger log = LoggerFactory.getLogger(StockController.class);
 

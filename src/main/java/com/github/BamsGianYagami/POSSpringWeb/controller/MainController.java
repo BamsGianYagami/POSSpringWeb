@@ -99,7 +99,7 @@ public class MainController {
     // @RolesAllowed("USER")
     @GetMapping("dashboard")
     public String menu(Model model, HttpServletRequest request, HttpServletResponse response){
-        log.info("masuk ke dashboard!!!");
+        log.debug("masuk ke dashboard!!!");
         // return new ModelAndView("dashboard");
         return "dashboard";
     }
@@ -176,7 +176,7 @@ public class MainController {
     }
 
     @GetMapping("login")
-    public String login(@ModelAttribute("login") LoginDTO login){
+    public String login(@ModelAttribute("login") LoginDTO login, String error, String logout){
 
         return "sample-login";
     }

@@ -10,7 +10,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,22 +30,27 @@ import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
 public class WebSecurityConfig {
 
 	private static final Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
+
+	@Bean
+	public WebSecurityCustomizer websecurityCostumizer(){
+		return (web) -> web.ignoring().requestMatchers("/h2-console/**");
+	}
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			// .csrf().disable()
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("*/css/*", "*/js/*", "*/svg/*", "test.html",
-				"*jsp*", "*index*", "*jsp*", "/WEB-INF/jsp/index.jsp",
-				"/main/login", "/test/test", "/h2-console").permitAll()
+				.requestMatchers("*/css/*", "*/js/*", "*/svg/*"
+				,"/WEB-INF/jsp/index.jsp" //path asli dari JSP juga harus di permit!
+				).permitAll()
 				.anyRequest().authenticated()
 				// .anyRequest().permitAll()
 			)
 			.formLogin((form) -> form
 				.loginPage("/")
 				.permitAll()
-				.defaultSuccessUrl("/main/dashboard")
+				.defaultSuccessUrl("/dashboard")
 			)
 			.logout((logout) -> logout.permitAll());
 

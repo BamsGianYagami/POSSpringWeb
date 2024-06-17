@@ -9,7 +9,7 @@ insert
         'bambang sugianto',
         'bambangsugianto68@gmail.com',
         '123',
-        'admin'
+        'ADMIN'
     );
 
 insert

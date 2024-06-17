@@ -14,33 +14,35 @@
       <jsp:include page="nav-bar.jsp"/>
       <div class="container-fluid row">
         <div class="container-fluid row my-2 py-sm-2 ps-sm-5 pe-sm-5">
-            <a href="/addStock" role="button" class="btn btn-success btn-lg">
-                Add stock <i class="fa fa-plus-square" aria-hidden="true"></i>
+            <a href="/adduser" role="button" class="btn btn-success btn-lg">
+                Add User <i class="fa fa-plus-square" aria-hidden="true"></i>
             </a>
         </div>
         <div class="container-fluid col my-2 py-sm-2 px-sm-2">
           <table class="table table-striped">
               <thead class="table-primary">
                   <tr>
-                      <th>item Id</th>
-                      <th>Nama Barang</th>
-                      <th>Harga Satuan</th>
-                      <th>Stock Barang</th>
+                      <th>username id</th>
+                      <th>Nama User</th>
+                      <th>Email</th>
+                      <th>password</th>
+                      <th>roles</th>
                       <th>action</th>
                   </tr>
               </thead>
               <tbody>
-                  <c:forEach items="${stocks}" var="stocks">
+                  <c:forEach items="${users}" var="users">
                       <tr>
-                            <td>${stocks.itemId}</td>
-                            <td>${stocks.itemName}</td>
-                            <td>${stocks.itemPrice}</td>
-                            <td>${stocks.qty}</td>
+                            <td>${users.id}</td>
+                            <td>${users.name}</td>
+                            <td>${users.email}</td>
+                            <td>${users.password}</td>
+                            <td>${users.roles}</td>
                             <td>
-                                <a href="/editStock/${stocks.itemId}" role="button" class="btn btn-outline-warning">
+                                <a href="/editUser/${user.id}" role="button" class="btn btn-outline-warning">
                                     edit
                                 </a>
-                                <a href="/deleteStock/${stocks.itemId}" role="button" class="btn btn-outline-danger">
+                                <a href="/deleteUser/${user.id}" role="button" class="btn btn-outline-danger">
                                     delete
                                 </a>
                             </td>

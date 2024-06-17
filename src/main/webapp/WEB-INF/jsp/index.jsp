@@ -58,6 +58,9 @@
                   <c:if test="${loginFailed}">
                     <p class="small fw-bold mt-2 pt-1 mb-0 link-danger">Username atau password salah!</p>
                   </c:if>
+                  <c:if test="${logout}">
+                    <p class="small fw-bold mt-2 pt-1 mb-0 link-danger">anda telah logout!</p>
+                  </c:if>
                 </div>
       
               </form:form>
