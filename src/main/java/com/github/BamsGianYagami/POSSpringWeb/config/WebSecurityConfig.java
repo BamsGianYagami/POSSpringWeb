@@ -32,13 +32,13 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.csrf().disable()
+			// .csrf().disable()
 			.authorizeHttpRequests((requests) -> requests
-				// .requestMatchers("*/css/*", "*/js/*", "*/svg/*", "test.html",
-				// "*jsp*", "*index*", "*jsp*", "/WEB-INF/jsp/index.jsp",
-				// "/main/login", "/test/test", "/h2-console").permitAll()
-				// .anyRequest().authenticated()
-				.anyRequest().permitAll()
+				.requestMatchers("*/css/*", "*/js/*", "*/svg/*", "test.html",
+				"*jsp*", "*index*", "*jsp*", "/WEB-INF/jsp/index.jsp",
+				"/main/login", "/test/test", "/h2-console").permitAll()
+				.anyRequest().authenticated()
+				// .anyRequest().permitAll()
 			)
 			.formLogin((form) -> form
 				.loginPage("/")

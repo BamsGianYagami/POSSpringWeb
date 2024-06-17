@@ -28,7 +28,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
 import com.github.BamsGianYagami.POSSpringWeb.dto.LoginDTO;
-import com.github.BamsGianYagami.POSSpringWeb.services.JwtService;
+// import com.github.BamsGianYagami.POSSpringWeb.services.JwtService;
 import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
 import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
 
@@ -48,53 +48,53 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @RequestMapping(path="main")
 public class MainController {
 
-    @Autowired
-    JwtService jwtService;
+    // @Autowired
+    // JwtService jwtService;
 
     @Autowired
     StockService stockService;
   
-    @Autowired
-    private AuthenticationManager authenticationManager; 
+    // @Autowired
+    // private AuthenticationManager authenticationManager;
 
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
 
-    @PostMapping("login")
-    public RedirectView login(@ModelAttribute("login") LoginDTO login, HttpServletRequest request , RedirectAttributes redirectAttributes, HttpServletResponse response) throws UsernameNotFoundException{
-        log.info("login as {}", login.getUsername());
-        RedirectView redirectView;
+    // @PostMapping("login")
+    // public RedirectView login(@ModelAttribute("login") LoginDTO login, HttpServletRequest request , RedirectAttributes redirectAttributes, HttpServletResponse response) throws UsernameNotFoundException{
+    //     log.info("login as {}", login.getUsername());
+    //     RedirectView redirectView;
 
-        String token = "";
+    //     String token = "";
 
-        try{
-            log.info("start authenticating...");
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())); 
-            log.info("authentication.isAuthenticated() {}", authentication.isAuthenticated());
-        if (authentication.isAuthenticated()) { 
-            token = "Bearer "+jwtService.generateToken(login.getUsername());
-        } else { 
-            throw new UsernameNotFoundException("invalid user request !");
-        }
-        }catch(AuthenticationException e){
-            log.error(e.getMessage());
-        }
+    //     try{
+    //         log.info("start authenticating...");
+    //         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())); 
+    //         log.info("authentication.isAuthenticated() {}", authentication.isAuthenticated());
+    //     if (authentication.isAuthenticated()) { 
+    //         token = "Bearer "+jwtService.generateToken(login.getUsername());
+    //     } else { 
+    //         throw new UsernameNotFoundException("invalid user request !");
+    //     }
+    //     }catch(AuthenticationException e){
+    //         log.error(e.getMessage());
+    //     }
 
-        log.info("token.isEmpty(): {} length: {}",token.isEmpty(), token.length());
-        if(token.isEmpty()){
-            log.info("failed to login");
-            redirectView = new RedirectView("/", true);
-            redirectAttributes.addFlashAttribute("loginFailed", true);
-            return redirectView;
-        }
+    //     log.info("token.isEmpty(): {} length: {}",token.isEmpty(), token.length());
+    //     if(token.isEmpty()){
+    //         log.info("failed to login");
+    //         redirectView = new RedirectView("/", true);
+    //         redirectAttributes.addFlashAttribute("loginFailed", true);
+    //         return redirectView;
+    //     }
 
-        HttpSession session = request.getSession();
-        redirectView = new RedirectView("/main/dashboard", true);
-        // redirectAttributes.addAttribute("username", login.getUsername());
-        session.setAttribute("Authorization", token);
-        log.info("ends here {}", redirectView.getUrl());
-        return redirectView;
-    }
+    //     HttpSession session = request.getSession();
+    //     redirectView = new RedirectView("/main/dashboard", true);
+    //     // redirectAttributes.addAttribute("username", login.getUsername());
+    //     session.setAttribute("Authorization", token);
+    //     log.info("ends here {}", redirectView.getUrl());
+    //     return redirectView;
+    // }
 
     // @RolesAllowed("USER")
     @GetMapping("dashboard")
@@ -173,5 +173,11 @@ public class MainController {
         log.info("stock count: {} ", stockService.getAllStock().size());
         model.addAttribute("stocks", stockService.getAllStock());
         return "view-stock";
+    }
+
+    @GetMapping("login")
+    public String login(@ModelAttribute("login") LoginDTO login){
+
+        return "sample-login";
     }
 }
