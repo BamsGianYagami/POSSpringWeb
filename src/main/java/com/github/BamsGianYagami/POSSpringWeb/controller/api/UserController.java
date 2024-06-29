@@ -60,8 +60,8 @@ public class UserController {
 
     @DeleteMapping("{id}")
     @RolesAllowed("Admin")
-    public ResponseEntity<?> deleteUser(@PathVariable Integer id){
-        String info = userInfoService.deleteUser(id);
+    public ResponseEntity<?> deleteUser(@PathVariable String username){
+        String info = userInfoService.deleteUser(username);
         return ResponseEntity.ok(info);
     }
 }

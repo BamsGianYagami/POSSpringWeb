@@ -13,7 +13,7 @@
           User Management
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/user">view Users</a>
+          <a class="dropdown-item" href="/users">view Users</a>
           <a class="dropdown-item" href="/addUser">add User</a>
           <!-- <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a> -->

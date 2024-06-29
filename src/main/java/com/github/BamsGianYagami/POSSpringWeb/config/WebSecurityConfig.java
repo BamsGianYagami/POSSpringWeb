@@ -57,38 +57,40 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
-	//in memory user manager
-	@Bean
-	public UserDetailsService userDetailsService() {
-		UserDetails user =
-			User.builder()
-				.username("user")
-				.password(passwordEncoder().encode("password"))
-				.roles("USER")
-				.build();
-		UserDetails admin = 
-			User.builder()
-				.username("admin")
-				.password(passwordEncoder().encode("password"))
-				.roles("ADMIN")
-				.build();
+	//#region
+	/** uncomment area ini kalau mau pakai in memory user manager */
+	// @Bean
+	// public UserDetailsService InMemoryuserDetailsService() {
+	// 	UserDetails user =
+	// 		User.builder()
+	// 			.username("user")
+	// 			.password(passwordEncoder().encode("password"))
+	// 			.roles("USER")
+	// 			.build();
+	// 	UserDetails admin = 
+	// 		User.builder()
+	// 			.username("admin")
+	// 			.password(passwordEncoder().encode("password"))
+	// 			.roles("ADMIN")
+	// 			.build();
 
 		
-		return new InMemoryUserDetailsManager(user, admin);
-	}
+	// 	return new InMemoryUserDetailsManager(user, admin);
+	// }
+
+	// @Bean
+    // public AuthenticationProvider authenticationProvider() { 
+    //     DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(); 
+    //     authenticationProvider.setUserDetailsService(InMemoryuserDetailsService()); 
+    //     authenticationProvider.setPasswordEncoder(passwordEncoder());
+    //     return authenticationProvider; 
+    // } 
+	//#endregion
 
 	// Password Encoding 
     @Bean
     public PasswordEncoder passwordEncoder() { 
         return new BCryptPasswordEncoder(); 
-    } 
-  
-    @Bean
-    public AuthenticationProvider authenticationProvider() { 
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(); 
-        authenticationProvider.setUserDetailsService(userDetailsService()); 
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider; 
     } 
   
     @Bean

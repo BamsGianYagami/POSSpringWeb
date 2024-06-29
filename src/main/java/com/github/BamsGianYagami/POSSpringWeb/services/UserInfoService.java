@@ -40,7 +40,7 @@ public class UserInfoService implements UserDetailsService {
 		}
 		
 
-		Optional<UserInfo> userDetail = repository.findByName(username); 
+		Optional<UserInfo> userDetail = repository.findByUsername(username); 
 
 		log.info("found userDetail of {} ? {}",username, userDetail.isPresent());
 		// Converting userDetail to UserDetails 
@@ -53,7 +53,7 @@ public class UserInfoService implements UserDetailsService {
 	}
 
 	public List<UserInfo> getUser(String username){
-		return repository.findByName(username).stream().toList();
+		return repository.findByUsername(username).stream().toList();
 	}
 
 	public String addUser(UserInfo userInfo) { 
@@ -63,11 +63,21 @@ public class UserInfoService implements UserDetailsService {
 		return "User Added Successfully"; 
 	}
 
+
+	//use recursive method for dynamic parameter
 	public String updateUser(UserInfo newUserData) {
-		log.info("update data user: +"+newUserData.getId());
-		Optional<UserInfo> existingUser = repository.findById(newUserData.getId());
+		return updateUser(newUserData, null);
+	}
+
+	/**NOTES! hibernate tidak bisa merubah data primary key! need to use another implementation*/
+	public String updateUser(UserInfo newUserData, String existingUsername) {
+		String srcUsername = existingUsername != null? existingUsername : newUserData.getUsername();
+		log.info("update data user: {}", srcUsername);
+		Optional<UserInfo> existingUser = repository.findById(srcUsername);
 		if(existingUser.isPresent()){
 			UserInfo usr = existingUser.get();
+			if(existingUsername!=null)
+				usr.setUsername(newUserData.getUsername());
 			usr.setName(newUserData.getName());
 			usr.setEmail(newUserData.getEmail());
 			if((newUserData.getPassword()!=null)){
@@ -77,14 +87,15 @@ public class UserInfoService implements UserDetailsService {
 				usr.setPassword(newUserData.getRoles());
 			}
 			repository.saveAndFlush(newUserData);
-			return "User "+newUserData.getId() +": "+newUserData.getName()+" Updated Successfully";
+			return "User "+newUserData.getUsername() +": "+newUserData.getName()+" Updated Successfully";
 		}
-		return "user "+newUserData.getId() +": "+newUserData.getName()+" does not exist!";
+		return "user "+newUserData.getUsername() +": "+newUserData.getName()+" does not exist!";
 	}
 
-	public String deleteUser(Integer id){
-		log.info("delete data user: {}", id);
-		repository.deleteById(id);
-		return "userId "+id+" has been deleted!";
+
+	public String deleteUser(String username){
+		log.info("delete data user: {}", username);
+		repository.deleteById(username);
+		return "userId "+username+" has been deleted!";
 	}
 }

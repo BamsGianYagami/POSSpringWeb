@@ -3,9 +3,9 @@
 insert
     into
     USER_INFO (
-        id, name, email, password, roles)
+        USERNAME, name, email, password, roles)
     VALUES (
-        0,
+        'bams',
         'bambang sugianto',
         'bambangsugianto68@gmail.com',
         '123',

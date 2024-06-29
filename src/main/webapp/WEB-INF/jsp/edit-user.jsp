@@ -4,7 +4,7 @@
 <c:url var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
     <head>
-      <title>Add Stock</title>
+      <title>Edit User</title>
       <link href="${contextPath}/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
       <script src="${contextPath}/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     </head>
@@ -12,21 +12,21 @@
       <jsp:include page="nav-bar.jsp"/>
       <div class="container-fluid row">
         <div class="container-fluid col border border-info border-2 my-2 py-sm-2 px-sm-2">
-        <form:form action="" method="post" modelAttribute="stock">
-          <!-- <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="itemId">Item ID: </form:label> <form:input type="text" path="itemId" class="form-control" disabled="true"/>
-          </div> -->
+        <form:form action="" method="post" modelAttribute="user">
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label"  path="itemName">Nama Barang: </form:label> <form:input type="text" path="itemName" class="form-control"/>
+            <form:label class="form-label" path="username">Username ID: </form:label> <form:input type="text" path="username" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="itemPrice">Harga Satuan: </form:label> <form:input path="itemPrice" class="form-control"/>
+            <form:label class="form-label"  path="name">Nama User: </form:label> <form:input type="text" path="name" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="qty">Banyaknya Stock: </form:label> <form:input path="qty" class="form-control"/>
+            <form:label class="form-label" path="email">Email: </form:label> <form:input path="email" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="unitCount">Satuan Unit (kg, pcs dan sebagainya): </form:label> <form:input path="unitCount" class="form-control"/>
+            <form:label class="form-label" path="password">encrypted Password (non modified): </form:label> <form:input path="password" class="form-control" disabled="true"/>
+          </div>
+          <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
+            <form:label class="form-label" path="roles">Roles: </form:label> <form:input path="roles" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
             <input type="submit" value="submit" class="btn btn-primary"/>

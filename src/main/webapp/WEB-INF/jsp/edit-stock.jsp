@@ -4,7 +4,7 @@
 <c:url var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
     <head>
-      <title>Checkout</title>
+      <title>Edit Stock</title>
       <link href="${contextPath}/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
       <script src="${contextPath}/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     </head>

@@ -8,6 +8,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +49,7 @@ public class ViewController {
 
 
     //#region user
-    @GetMapping("user")
+    @GetMapping("users")
     public String user(Model model){
         model.addAttribute("users", userInfoService.getAllUser());
         return "view-user";
@@ -56,8 +57,44 @@ public class ViewController {
 
     @GetMapping("addUser")
     public String addUser(Model model){
-        // model.addAttribute("user", new UserInfo());
+        model.addAttribute("user", new UserInfo());
         return "add-user";
+    }
+
+    @PostMapping("addUser")
+    public RedirectView addUser(@ModelAttribute UserInfo user, RedirectAttributes redirectAttributes){
+        final RedirectView redirectView = new RedirectView("/users", true);
+        String message = userInfoService.addUser(user);
+        redirectAttributes.addFlashAttribute("message", message);
+        redirectAttributes.addFlashAttribute("isSaving", true);
+        return redirectView;
+    }
+
+    @GetMapping("editUser/{username}")
+    public String editUser(Model model, @PathVariable String username){
+        UserInfo user = userInfoService.getUser(username).get(0);
+        model.addAttribute("user", user);
+        return "edit-user";
+    }
+
+    @PostMapping("editUser/{username}")
+    public RedirectView editUser(@PathVariable String username, @ModelAttribute("user") UserInfo user, RedirectAttributes redirectAttributes){
+        log.info("masuk editUser {}", username);
+        final RedirectView redirectView = new RedirectView("/users", true);
+        user.setPassword(null);
+        String message = userInfoService.updateUser(user, username);
+        redirectAttributes.addFlashAttribute("message", message);
+        redirectAttributes.addFlashAttribute("isEditing", true);
+        return redirectView;
+    }
+
+    @GetMapping("deleteUser/{username}")
+    public RedirectView deleteUser(@PathVariable String username, RedirectAttributes redirectAttributes){
+        final RedirectView redirectView = new RedirectView("/users", true);
+        String message = userInfoService.deleteUser(username);
+        redirectAttributes.addFlashAttribute("message", message);
+        redirectAttributes.addFlashAttribute("isEditing", true);
+        return redirectView;
     }
     //#endregion user
 
@@ -65,14 +102,13 @@ public class ViewController {
     //#region Stock
     @GetMapping("addStock")
     public String addStock(Model model){
-        log.info("User {} masuk ke addStock", model.getAttribute("username"));
         model.addAttribute("stock", new Stock());
         return "add-stock";
     }
     
     @PostMapping("addStock")
     public RedirectView addStock(@ModelAttribute("stock") Stock stock,RedirectAttributes redirectAttributes){
-        final RedirectView redirectView = new RedirectView("/main/stocks", true);
+        final RedirectView redirectView = new RedirectView("/stocks", true);
         Stock savedStock = stockService.addStock(stock);
         redirectAttributes.addFlashAttribute("savedStock", savedStock);
         redirectAttributes.addFlashAttribute("isSaving", true);
@@ -81,7 +117,6 @@ public class ViewController {
 
     @GetMapping("editStock/{id}")
     public String editStock(Model model, @PathVariable Integer id){
-        log.info("User {} masuk ke editStock {}", model.getAttribute("username"), id);
         Stock savedStock = stockService.getStock(id);
         model.addAttribute("stock", savedStock);
         return "edit-stock";
@@ -89,7 +124,7 @@ public class ViewController {
 
     @PostMapping("editStock/{id}")
     public RedirectView editStock(@ModelAttribute("stock") Stock stock,RedirectAttributes redirectAttributes){
-        final RedirectView redirectView = new RedirectView("/main/stocks", true);
+        final RedirectView redirectView = new RedirectView("/stocks", true);
         Stock savedStock = stockService.updateStock(stock);
         redirectAttributes.addFlashAttribute("savedStock", savedStock);
         redirectAttributes.addFlashAttribute("isEditing", true);
@@ -98,8 +133,7 @@ public class ViewController {
 
     @GetMapping("deleteStock/{id}")
     public RedirectView deleteStock(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes){
-        log.info("User {} masuk ke deleteStock {}", model.getAttribute("username"), id);
-        final RedirectView redirectView = new RedirectView("/main/stocks", true);
+        final RedirectView redirectView = new RedirectView("/stocks", true);
         String message = stockService.deleteStock(id);
         redirectAttributes.addFlashAttribute("message", message);
         redirectAttributes.addFlashAttribute("isDeleting", true);
