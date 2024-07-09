@@ -52,6 +52,10 @@ public class UserInfoService implements UserDetailsService {
 		return repository.findAll();
 	}
 
+	public Optional<UserInfo> getUser(Integer id){
+		return repository.findById(id);
+	}
+
 	public List<UserInfo> getUser(String username){
 		return repository.findByUsername(username).stream().toList();
 	}
@@ -64,20 +68,12 @@ public class UserInfoService implements UserDetailsService {
 	}
 
 
-	//use recursive method for dynamic parameter
 	public String updateUser(UserInfo newUserData) {
-		return updateUser(newUserData, null);
-	}
-
-	/**NOTES! hibernate tidak bisa merubah data primary key! need to use another implementation*/
-	public String updateUser(UserInfo newUserData, String existingUsername) {
-		String srcUsername = existingUsername != null? existingUsername : newUserData.getUsername();
-		log.info("update data user: {}", srcUsername);
-		Optional<UserInfo> existingUser = repository.findById(srcUsername);
+		log.info("update data user: {} ({})", newUserData.getUsername(), newUserData.getId());
+		Optional<UserInfo> existingUser = repository.findById(newUserData.getId());
 		if(existingUser.isPresent()){
 			UserInfo usr = existingUser.get();
-			if(existingUsername!=null)
-				usr.setUsername(newUserData.getUsername());
+			usr.setUsername(newUserData.getUsername());
 			usr.setName(newUserData.getName());
 			usr.setEmail(newUserData.getEmail());
 			if((newUserData.getPassword()!=null)){
@@ -93,9 +89,9 @@ public class UserInfoService implements UserDetailsService {
 	}
 
 
-	public String deleteUser(String username){
-		log.info("delete data user: {}", username);
-		repository.deleteById(username);
-		return "userId "+username+" has been deleted!";
+	public String deleteUser(Integer id){
+		log.info("delete data user: {}", id);
+		repository.deleteById(id);
+		return "userId "+id+" has been deleted!";
 	}
 }

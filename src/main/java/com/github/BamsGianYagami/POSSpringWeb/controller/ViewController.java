@@ -8,7 +8,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,28 +69,28 @@ public class ViewController {
         return redirectView;
     }
 
-    @GetMapping("editUser/{username}")
-    public String editUser(Model model, @PathVariable String username){
-        UserInfo user = userInfoService.getUser(username).get(0);
+    @GetMapping("editUser/{id}")
+    public String editUser(Model model, @PathVariable Integer id){
+        UserInfo user = userInfoService.getUser(id).get();
         model.addAttribute("user", user);
         return "edit-user";
     }
 
-    @PostMapping("editUser/{username}")
-    public RedirectView editUser(@PathVariable String username, @ModelAttribute("user") UserInfo user, RedirectAttributes redirectAttributes){
-        log.info("masuk editUser {}", username);
+    @PostMapping("editUser/{id}")
+    public RedirectView editUser(@ModelAttribute("user") UserInfo user, RedirectAttributes redirectAttributes){
+        log.info("masuk editUser {}", user.getUsername());
         final RedirectView redirectView = new RedirectView("/users", true);
         user.setPassword(null);
-        String message = userInfoService.updateUser(user, username);
+        String message = userInfoService.updateUser(user);
         redirectAttributes.addFlashAttribute("message", message);
         redirectAttributes.addFlashAttribute("isEditing", true);
         return redirectView;
     }
 
-    @GetMapping("deleteUser/{username}")
-    public RedirectView deleteUser(@PathVariable String username, RedirectAttributes redirectAttributes){
+    @GetMapping("deleteUser/{id}")
+    public RedirectView deleteUser(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         final RedirectView redirectView = new RedirectView("/users", true);
-        String message = userInfoService.deleteUser(username);
+        String message = userInfoService.deleteUser(id);
         redirectAttributes.addFlashAttribute("message", message);
         redirectAttributes.addFlashAttribute("isEditing", true);
         return redirectView;

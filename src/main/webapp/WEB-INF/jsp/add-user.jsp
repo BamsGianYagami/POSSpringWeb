@@ -14,7 +14,10 @@
         <div class="container-fluid col border border-info border-2 my-2 py-sm-2 px-sm-2">
         <form:form action="" method="post" modelAttribute="user">
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="username">Username ID: </form:label> <form:input type="text" path="username" class="form-control"/>
+            <form:label class="form-label" path="id">ID: </form:label> <form:input type="text" path="id" class="form-control" disabled="true"/>
+          </div>
+          <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
+            <form:label class="form-label" path="username">Username: </form:label> <form:input type="text" path="username" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
             <form:label class="form-label"  path="name">Nama User: </form:label> <form:input type="text" path="name" class="form-control"/>
@@ -23,7 +26,7 @@
             <form:label class="form-label" path="email">Email: </form:label> <form:input path="email" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="password">Password: </form:label> <form:input path="password" class="form-control"/>
+            <form:label class="form-label" path="password">encrypted Password: </form:label> <form:input path="password" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
             <form:label class="form-label" path="roles">Roles: </form:label> <form:input path="roles" class="form-control"/>

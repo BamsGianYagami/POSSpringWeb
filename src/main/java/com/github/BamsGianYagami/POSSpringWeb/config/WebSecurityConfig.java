@@ -57,34 +57,34 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
-	//#region
+	//#region in memory user
 	/** uncomment area ini kalau mau pakai in memory user manager */
-	// @Bean
-	// public UserDetailsService InMemoryuserDetailsService() {
-	// 	UserDetails user =
-	// 		User.builder()
-	// 			.username("user")
-	// 			.password(passwordEncoder().encode("password"))
-	// 			.roles("USER")
-	// 			.build();
-	// 	UserDetails admin = 
-	// 		User.builder()
-	// 			.username("admin")
-	// 			.password(passwordEncoder().encode("password"))
-	// 			.roles("ADMIN")
-	// 			.build();
+	@Bean
+	public UserDetailsService InMemoryuserDetailsService() {
+		UserDetails user =
+			User.builder()
+				.username("user")
+				.password(passwordEncoder().encode("password"))
+				.roles("USER")
+				.build();
+		UserDetails admin = 
+			User.builder()
+				.username("admin")
+				.password(passwordEncoder().encode("password"))
+				.roles("ADMIN")
+				.build();
 
 		
-	// 	return new InMemoryUserDetailsManager(user, admin);
-	// }
+		return new InMemoryUserDetailsManager(user, admin);
+	}
 
-	// @Bean
-    // public AuthenticationProvider authenticationProvider() { 
-    //     DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(); 
-    //     authenticationProvider.setUserDetailsService(InMemoryuserDetailsService()); 
-    //     authenticationProvider.setPasswordEncoder(passwordEncoder());
-    //     return authenticationProvider; 
-    // } 
+	@Bean
+    public AuthenticationProvider authenticationProvider() { 
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(); 
+        authenticationProvider.setUserDetailsService(InMemoryuserDetailsService()); 
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider; 
+    } 
 	//#endregion
 
 	// Password Encoding 
