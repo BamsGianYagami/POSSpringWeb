@@ -9,6 +9,7 @@ import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.UserInfo;
+import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
 import com.github.BamsGianYagami.POSSpringWeb.repository.UserInfoRepository;
 
 @SpringBootTest
@@ -16,6 +17,9 @@ class POSSpringWebApplicationTests {
 
 	@Autowired
 	UserInfoRepository userInfoRepo;
+
+	@Autowired
+	ShoppingCartRepository cartRepo;
 
 	@Test
 	void contextLoads() {
@@ -35,5 +39,16 @@ class POSSpringWebApplicationTests {
 			Assert.isTrue(false, e.getMessage());
 		}
 		
+	}
+
+
+	@Test
+	public void testCartRepo(){
+		try{
+			List<Integer> listInt = cartRepo.getListItemsByUserId(1);
+			Assert.isTrue(true, "size of cart in userid 1: "+listInt.size());
+		}catch(Exception e){
+			Assert.isTrue(false, e.getMessage());
+		}
 	}
 }

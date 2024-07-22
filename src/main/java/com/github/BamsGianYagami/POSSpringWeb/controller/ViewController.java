@@ -3,11 +3,14 @@ package com.github.BamsGianYagami.POSSpringWeb.controller;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,10 @@ import com.github.BamsGianYagami.POSSpringWeb.Entity.UserInfo;
 import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
 import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
 import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class ViewController {
@@ -151,23 +158,20 @@ public class ViewController {
     //#region checkout
     @GetMapping("checkout")
     public String checkout(Model model){
-        log.info("User {} masuk ke checkout", model.getAttribute("username"));
-        Map<String, Object> map = new HashMap<String,Object>();
-        map.put("itemId", 1);
-        map.put("itemName", "Pasir");
-        map.put("itemPrice", 100000);
-        map.put("qty", 20);
-        Collection<Map<String, Object>> collectMap = new LinkedList<Map<String, Object>>();
-        collectMap.add(map);
-        map = new HashMap<String,Object>();
-        map.put("itemId", 2);
-        map.put("itemName", "Semen");
-        map.put("itemPrice", 15000);
-        map.put("qty", 20);
-        collectMap.add(map);
-        model.addAttribute("checkout", collectMap);
+        List<Stock> stocks = stockService.getAllStock();
+        model.addAttribute("stocks", stocks);
+
         model.addAttribute("inputItem", new ItemCheckoutDTO());
         return "checkout";
+    }
+
+    @GetMapping("addtoCart/{id}")
+    public RedirectView addToCart(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        log.info("User {} masuk ke addtoCart", currentPrincipalName);
+        final RedirectView redirectView = new RedirectView("/checkout", true);
+        return redirectView;
     }
     //#endregion checkout
 }
