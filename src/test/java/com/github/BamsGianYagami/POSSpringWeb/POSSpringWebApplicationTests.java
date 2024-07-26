@@ -45,7 +45,7 @@ class POSSpringWebApplicationTests {
 	@Test
 	public void testCartRepo(){
 		try{
-			List<Integer> listInt = cartRepo.getListItemsByUserId(1);
+			List<Integer> listInt = cartRepo.getListItemsByUsername("user");
 			Assert.isTrue(true, "size of cart in userid 1: "+listInt.size());
 		}catch(Exception e){
 			Assert.isTrue(false, e.getMessage());

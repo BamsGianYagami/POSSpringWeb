@@ -39,14 +39,14 @@
                     </div>
                     <div class="list-group">
 
-                        <c:forEach items="${checkout}" var="checkout">
+                        <c:forEach items="${cart}" var="cart">
                             <div class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">${checkout.itemName}</h5>
-                                    <small>${checkout.itemName}</small>
+                                    <h5 class="mb-1">${cart.itemName}</h5>
+                                    <small>quantity: ${cart.qty}</small>
                                 </div>
-                                <p class="mb-1">${checkout.itemPrice}</p>
-                                <small>${checkout.itemId}</small>
+                                <p class="mb-1">Price: ${cart.itemPrice}</p>
+                                <small>item ID: ${cart.itemId}</small>
                             </div>
                         </c:forEach>
 

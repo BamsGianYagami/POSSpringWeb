@@ -8,18 +8,18 @@ CREATE TABLE USER_INFO (
     primary key (id)
 );
 CREATE TABLE STOCK (
-    itemId int,
-    itemName varchar(30),
-    itemPrice float,
+    item_id int,
+    item_name varchar(30),
+    item_price float,
     qty int,
-    unitCount varchar(30),
-    primary key (itemId)
+    unit_count varchar(30),
+    primary key (item_id)
 );
 CREATE TABLE SHOPPING_CART(
-    USER_ID INT NOT NULL,
+    USERNAME VARCHAR(30) NOT NULL,
     ITEM_ID INT NOT NULL,
     QTY INT NOT NULL,
-    PRIMARY KEY (USER_ID, ITEM_ID)
+    PRIMARY KEY (USERNAME, ITEM_ID)
 );
 
 CREATE SEQUENCE STOCK_SEQUENCE

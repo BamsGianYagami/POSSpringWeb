@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShoppingCartId implements Serializable{
-    private int userId;
+    private String username;
     private int itemId;
 }

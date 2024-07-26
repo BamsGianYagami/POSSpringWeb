@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +22,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.UserInfo;
 import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
+import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
+import com.github.BamsGianYagami.POSSpringWeb.services.CheckoutService;
 import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
 import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
 
@@ -38,6 +43,9 @@ public class ViewController {
 
     @Autowired
     UserInfoService userInfoService;
+
+    @Autowired
+    CheckoutService checkoutService;
 
     private static Logger log = LoggerFactory.getLogger(ViewController.class);
     
@@ -161,7 +169,7 @@ public class ViewController {
         List<Stock> stocks = stockService.getAllStock();
         model.addAttribute("stocks", stocks);
 
-        model.addAttribute("inputItem", new ItemCheckoutDTO());
+        // model.addAttribute("inputItem", new ItemCheckoutDTO());
         return "checkout";
     }
 
@@ -170,6 +178,9 @@ public class ViewController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         log.info("User {} masuk ke addtoCart", currentPrincipalName);
+        List<ShoppingCartRepository.ListCart> cart = checkoutService.addToCart(currentPrincipalName, id);
+        redirectAttributes.addFlashAttribute("cart", cart);
+        
         final RedirectView redirectView = new RedirectView("/checkout", true);
         return redirectView;
     }

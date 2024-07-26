@@ -9,11 +9,23 @@ import org.springframework.stereotype.Repository;
 
 import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCart;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCartId;
+// import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
 
 @Repository
 public interface ShoppingCartRepository  extends JpaRepository<ShoppingCart, ShoppingCartId>{
 
-    @Query("SELECT itemId FROM ShoppingCart WHERE userId = :userId")
-    List<Integer> getListItemsByUserId(@Param("userId") Integer userId);
+    @Query("SELECT itemId FROM ShoppingCart WHERE username = :username")
+    List<Integer> getListItemsByUsername(@Param("username") String username);
     
+    @Query("SELECT S.itemId AS itemId, S.itemName AS itemName, S.itemPrice AS itemPrice, C.qty as qty, (S.itemPrice*C.qty) AS totalPrice FROM ShoppingCart C INNER JOIN Stock S ON C.itemId=S.itemId WHERE C.username=:username")
+    List<ListCart> getListCartByUsername(@Param("username") String username);
+
+
+    interface ListCart{
+        Integer getItemId();
+        String getItemName();
+        Integer getItemPrice();
+        Integer getQty();
+        Integer getTotalPrice();
+    }
 }

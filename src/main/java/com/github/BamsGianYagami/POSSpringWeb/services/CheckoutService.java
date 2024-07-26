@@ -1,5 +1,6 @@
 package com.github.BamsGianYagami.POSSpringWeb.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,21 +36,23 @@ public class CheckoutService {
         return listItem;
     }
 
-    public List<ItemCheckoutDTO> addToCart(int userId, int itemId){
-        ShoppingCartId shoppingCardID = new ShoppingCartId(userId, itemId);
+    public List<ShoppingCartRepository.ListCart> addToCart(String username, int itemId){
+        ShoppingCartId shoppingCardID = new ShoppingCartId(username, itemId);
         Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(shoppingCardID);
         ShoppingCart shoppingCartEntity;
         if(shoppingCart.isPresent()){
             shoppingCartEntity =  shoppingCart.get();
             int qty = shoppingCartEntity.getQty();
-            shoppingCartEntity.setQty(qty++);
+            shoppingCartEntity.setQty(++qty); //++ sebelum variable artinya di tambah dahulu baru di assign
             shoppingCartRepository.save(shoppingCartEntity);
         } else{
-            shoppingCartEntity = new ShoppingCart(userId, itemId, 1);
+            shoppingCartEntity = new ShoppingCart(username, itemId, 1);
             shoppingCartRepository.save(shoppingCartEntity);
         }
 
-        return null;
+        List<ShoppingCartRepository.ListCart> listCheckout = shoppingCartRepository.getListCartByUsername(username);
+
+        return listCheckout;
     }
 
     public boolean saveTransaction(List<ItemCheckoutDTO> listItem){
