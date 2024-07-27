@@ -23,7 +23,26 @@
                                     <h5 class="card-title">${stock.itemName}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">item id: ${stock.itemId}</h6>
                                     <p class="card-text">price: ${stock.itemPrice}</p>
-                                    <a href="/addtoCart/${stock.itemId}" class="card-link">Add to cart</a>
+
+                                    <!-- penjelasan:
+                                     modelAttribute adalah tag tambahan dari JSP, dibutuhkan deklarasi model attribute sebelum load halaman! -->
+                                    <form:form action="/addtoCart/${stock.itemId}" method="post" modelAttribute="addCart" class="input-group input-group-sm mb-3">
+                                        <c:if test="${stock.qty==0}">
+                                            <input type="submit" disabled="disabled" class="btn btn-secondary mb-3 disabled" value="habis"/>
+                                        </c:if>
+
+                                        <c:if test="${stock.qty>0}">
+                                            <form:label class="form-label mb-3" path="qty">qty: </form:label>
+                                            <form:input path="qty" class="form-control mb-3" type="number" value="1" min="1" max="${stock.qty}"/>
+                                            <!--penjelasan:
+                                                Dengan prefix form dari JSP, ada tambahan tag path yang secara otomatis akan mapping data
+                                                sebagai request parameter, dengan bantuan form:form secara otomatis akan ditambahkan input
+                                                type hidden berupa _csrf, namun bisa digabung dengan html sub tag biasa dari <form> sesuai kebutuhan,
+                                                contohnya pada button submit yang tidak perlu mapping data -->
+                                            <input type="submit" class="btn btn-primary mb-3" value="add to cart"/>
+                                        </c:if>
+                                    </form:form>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 package com.github.BamsGianYagami.POSSpringWeb.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -169,10 +170,11 @@ public class ViewController {
         List<Stock> stocks = stockService.getAllStock();
         model.addAttribute("stocks", stocks);
 
-        // model.addAttribute("inputItem", new ItemCheckoutDTO());
+        model.addAttribute("addCart", new ItemCheckoutDTO());
         return "checkout";
     }
 
+    //old dengan get
     @GetMapping("addtoCart/{id}")
     public RedirectView addToCart(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -181,6 +183,18 @@ public class ViewController {
         List<ShoppingCartRepository.ListCart> cart = checkoutService.addToCart(currentPrincipalName, id);
         redirectAttributes.addFlashAttribute("cart", cart);
         
+        final RedirectView redirectView = new RedirectView("/checkout", true);
+        return redirectView;
+    }
+
+    //enchance dengan post karena bisa langsung diisi quantity nya
+    @PostMapping("addtoCart/{id}")
+    public RedirectView addToCart(@PathVariable Integer id, @ModelAttribute("addCart") ItemCheckoutDTO itemCheckout, RedirectAttributes redirectAttributes ){
+        try{
+            log.info("post id{} mapping: {}",id, new ObjectMapper().writeValueAsString(itemCheckout));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         final RedirectView redirectView = new RedirectView("/checkout", true);
         return redirectView;
     }

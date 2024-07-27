@@ -8,10 +8,23 @@
         <div class="container-fluid row vh-100">
             <div class="d-flex flex-column container-fluid col my-2 py-sm-2 px-sm-2 vh-100">
                 <div class="d-flex flex-column vh-100 overflow-scroll">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 25%;">
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                            <form:form action="/addToCart/${stock.itemId}" method="post" modelAttribute="inputItem" class="input-group input-group-sm mb-3">
+                                <label class="form-label mb-3" path="qty">qty: </label>
+                                <input path="qty" class="form-control mb-3" type="number" value="1" min="1" max="${stock.qty}"/>
+                                <input type="submit" class="btn btn-primary mb-3" value="add to cart"/>
+                            </form:form>
+
+                            <form:form action="/addToCart/${stock.itemId}" method="post" modelAttribute="inputItem" class="input-group input-group-sm mb-3">
+                                <label class="form-label mb-3" path="qty">qty: </label>
+                                <input path="qty" class="form-control mb-3" type="number" value="0" min="0" max="0"/>
+                                <input type="submit" disabled="disabled" class="btn btn-primary mb-3" value="habis"/>
+                            </form:form>
+
                         </div>
                       </div>
                 </div>
