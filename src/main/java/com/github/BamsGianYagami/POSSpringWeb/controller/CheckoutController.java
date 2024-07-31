@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.dto.CheckoutTransactionDTO;
-import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
+import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
 import com.github.BamsGianYagami.POSSpringWeb.services.CheckoutService;
 
 @RestController
@@ -27,14 +27,14 @@ public class CheckoutController {
 
     @GetMapping("showDetailCheckout")
     //untuk menampilkan informasi detail data yang dipilih saat checkout berikut total harga dari jumlah barang
-    public ResponseEntity<?> showDetailCheckout(@RequestBody List<ItemCheckoutDTO> listItem){
+    public ResponseEntity<?> showDetailCheckout(@RequestBody List<cartDTO> listItem){
 
         listItem = service.getStocksInformation(listItem);
         return ResponseEntity.ok(listItem);
     }
 
     @PostMapping("checkoutTransaction")
-    public ResponseEntity<?> checkoutTransaction(@RequestBody List<ItemCheckoutDTO> listItem){
+    public ResponseEntity<?> checkoutTransaction(@RequestBody List<cartDTO> listItem){
         CheckoutTransactionDTO response = new CheckoutTransactionDTO();
 
         listItem = service.getStocksInformation(listItem);

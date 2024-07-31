@@ -12,5 +12,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CheckoutTransactionDTO {
     Integer GrandTotal;
-    List<ItemCheckoutDTO> listItem;
+    List<cartDTO> listItem;
 }

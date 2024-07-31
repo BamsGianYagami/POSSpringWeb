@@ -1,6 +1,7 @@
 package com.github.BamsGianYagami.POSSpringWeb.controller;
 
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,7 +27,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.UserInfo;
-import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
+import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
 import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
 import com.github.BamsGianYagami.POSSpringWeb.services.CheckoutService;
 import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
@@ -167,34 +168,38 @@ public class ViewController {
     //#region checkout
     @GetMapping("checkout")
     public String checkout(Model model){
+        log.info("masuk checkout");
         List<Stock> stocks = stockService.getAllStock();
         model.addAttribute("stocks", stocks);
-
-        model.addAttribute("addCart", new ItemCheckoutDTO());
-        return "checkout";
-    }
-
-    //old dengan get
-    @GetMapping("addtoCart/{id}")
-    public RedirectView addToCart(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        log.info("User {} masuk ke addtoCart", currentPrincipalName);
-        List<ShoppingCartRepository.ListCart> cart = checkoutService.addToCart(currentPrincipalName, id);
-        redirectAttributes.addFlashAttribute("cart", cart);
-        
-        final RedirectView redirectView = new RedirectView("/checkout", true);
-        return redirectView;
+        List<ShoppingCartRepository.ListCart> cart = checkoutService.getListCarts(currentPrincipalName);
+        model.addAttribute("carts", cart);
+        log.info("ada {} cart", cart.size());
+        model.addAttribute("cart", new cartDTO());
+        System.out.println("mau return checkout");
+        return "checkout";
     }
 
     //enchance dengan post karena bisa langsung diisi quantity nya
     @PostMapping("addtoCart/{id}")
-    public RedirectView addToCart(@PathVariable Integer id, @ModelAttribute("addCart") ItemCheckoutDTO itemCheckout, RedirectAttributes redirectAttributes ){
-        try{
-            log.info("post id{} mapping: {}",id, new ObjectMapper().writeValueAsString(itemCheckout));
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    public RedirectView addToCart(@PathVariable Integer id, @ModelAttribute("addCart") cartDTO itemCart, RedirectAttributes redirectAttributes ){
+        itemCart.setItemId(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        log.info("User {} masuk ke addtoCart", currentPrincipalName);
+        checkoutService.addToCart(currentPrincipalName, id, itemCart.getQty());
+        final RedirectView redirectView = new RedirectView("/checkout", true);
+        return redirectView;
+    }
+
+    @PostMapping("removeFromCart/{id}")
+    public RedirectView removeFromCart(@PathVariable Integer id, @ModelAttribute("cart") cartDTO itemCart, RedirectAttributes redirectAttributes ){
+        itemCart.setItemId(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        log.info("User {} masuk ke removeFromCart", currentPrincipalName);
+        checkoutService.removeFromCart(currentPrincipalName, id, itemCart.getQty());
         final RedirectView redirectView = new RedirectView("/checkout", true);
         return redirectView;
     }

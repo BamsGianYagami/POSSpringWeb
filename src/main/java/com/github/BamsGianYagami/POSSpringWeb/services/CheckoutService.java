@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCart;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCartId;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
-import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
+import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
 import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
 
 @Service
@@ -26,8 +26,8 @@ public class CheckoutService {
     ShoppingCartRepository shoppingCartRepository;
 
 
-    public List<ItemCheckoutDTO> getStocksInformation(List<ItemCheckoutDTO> listItem){
-        for(ItemCheckoutDTO item : listItem){
+    public List<cartDTO> getStocksInformation(List<cartDTO> listItem){
+        for(cartDTO item : listItem){
             Stock s = stockService.getStock(item.getItemId());
             item.setItemName(s.getItemName());
             item.setItemPrice(s.getItemPrice());
@@ -36,26 +36,42 @@ public class CheckoutService {
         return listItem;
     }
 
-    public List<ShoppingCartRepository.ListCart> addToCart(String username, int itemId){
+    public void addToCart(String username, int itemId, int qty){
         ShoppingCartId shoppingCardID = new ShoppingCartId(username, itemId);
         Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(shoppingCardID);
         ShoppingCart shoppingCartEntity;
         if(shoppingCart.isPresent()){
             shoppingCartEntity =  shoppingCart.get();
-            int qty = shoppingCartEntity.getQty();
-            shoppingCartEntity.setQty(++qty); //++ sebelum variable artinya di tambah dahulu baru di assign
+            shoppingCartEntity.setQty(qty);
             shoppingCartRepository.save(shoppingCartEntity);
         } else{
-            shoppingCartEntity = new ShoppingCart(username, itemId, 1);
+            shoppingCartEntity = new ShoppingCart(username, itemId, qty);
             shoppingCartRepository.save(shoppingCartEntity);
         }
+    }
 
+    public void removeFromCart(String username, int itemId, int qty){
+        ShoppingCartId shoppingCardID = new ShoppingCartId(username, itemId);
+        Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(shoppingCardID);
+        ShoppingCart shoppingCartEntity;
+        if(shoppingCart.isPresent()){
+            shoppingCartEntity =  shoppingCart.get();
+            if(qty==shoppingCartEntity.getQty()) {
+                shoppingCartRepository.delete(shoppingCartEntity);
+            } else {
+                shoppingCartEntity.setQty(qty);
+                shoppingCartRepository.save(shoppingCartEntity);
+            }
+        }
+    }
+
+    public List<ShoppingCartRepository.ListCart> getListCarts(String username){
+        
         List<ShoppingCartRepository.ListCart> listCheckout = shoppingCartRepository.getListCartByUsername(username);
-
         return listCheckout;
     }
 
-    public boolean saveTransaction(List<ItemCheckoutDTO> listItem){
+    public boolean saveTransaction(List<cartDTO> listItem){
         return true;
     }
 }

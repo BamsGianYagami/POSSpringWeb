@@ -26,7 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
-import com.github.BamsGianYagami.POSSpringWeb.dto.ItemCheckoutDTO;
+import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
 import com.github.BamsGianYagami.POSSpringWeb.dto.LoginDTO;
 // import com.github.BamsGianYagami.POSSpringWeb.services.JwtService;
 import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
@@ -121,7 +121,7 @@ public class MainController {
         map.put("qty", 20);
         collectMap.add(map);
         model.addAttribute("checkout", collectMap);
-        model.addAttribute("inputItem", new ItemCheckoutDTO());
+        model.addAttribute("inputItem", new cartDTO());
         return "checkout";
     }
 

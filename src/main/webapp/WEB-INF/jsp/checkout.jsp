@@ -16,7 +16,7 @@
                 <div class="d-flex pd-2 row row-cols bd-highlight vh-100 overflow-scroll">
                     
                     <c:forEach items="${stocks}" var="stock">
-                        <div class="col">
+                        <div class="col mx-1 my-1">
                             <div class="card" style="width: 18rem;">
                                 <img src="..." class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -26,13 +26,13 @@
 
                                     <!-- penjelasan:
                                      modelAttribute adalah tag tambahan dari JSP, dibutuhkan deklarasi model attribute sebelum load halaman! -->
-                                    <form:form action="/addtoCart/${stock.itemId}" method="post" modelAttribute="addCart" class="input-group input-group-sm mb-3">
+                                    <form:form action="/addtoCart/${stock.itemId}" method="post" modelAttribute="cart" class="input-group input-group-sm mb-3">
                                         <c:if test="${stock.qty==0}">
                                             <input type="submit" disabled="disabled" class="btn btn-secondary mb-3 disabled" value="habis"/>
                                         </c:if>
 
                                         <c:if test="${stock.qty>0}">
-                                            <form:label class="form-label mb-3" path="qty">qty: </form:label>
+                                            <form:label class="form-label mb-3" path="qty">qty (${stock.qty}): </form:label>
                                             <form:input path="qty" class="form-control mb-3" type="number" value="1" min="1" max="${stock.qty}"/>
                                             <!--penjelasan:
                                                 Dengan prefix form dari JSP, ada tambahan tag path yang secara otomatis akan mapping data
@@ -58,14 +58,18 @@
                     </div>
                     <div class="list-group">
 
-                        <c:forEach items="${cart}" var="cart">
+                        <c:forEach items="${carts}" var="cart">
                             <div class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">${cart.itemName}</h5>
-                                    <small>quantity: ${cart.qty}</small>
+                                    <small>item ID: ${cart.itemId}</small>
                                 </div>
                                 <p class="mb-1">Price: ${cart.itemPrice}</p>
-                                <small>item ID: ${cart.itemId}</small>
+                                <form:form action="/removeFromCart/${cart.itemId}" method="post" modelAttribute="cart" class="input-group input-group-sm mb-3">
+                                    <form:label class="form-label mb-3" path="qty">qty (${cart.qty}): </form:label>
+                                    <form:input class="form-control mb-3" path="qty" type="number" value="${cart.qty}" min="1" max="${cart.qty}"/>
+                                    <input type="submit" class="btn btn-primary mb-3" value="remove"/>
+                                </form:form>
                             </div>
                         </c:forEach>
 
