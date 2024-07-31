@@ -71,6 +71,14 @@ public class CheckoutService {
         return listCheckout;
     }
 
+    public Integer calculateGrandTotal(List<ShoppingCartRepository.ListCart> carts){
+        Integer total = 0;
+        for(ShoppingCartRepository.ListCart cart : carts){
+            total += cart.getItemPrice() * cart.getQty();
+        }
+        return total;
+    }
+
     public boolean saveTransaction(List<cartDTO> listItem){
         return true;
     }

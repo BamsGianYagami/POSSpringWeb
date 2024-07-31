@@ -173,10 +173,12 @@ public class ViewController {
         model.addAttribute("stocks", stocks);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        List<ShoppingCartRepository.ListCart> cart = checkoutService.getListCarts(currentPrincipalName);
-        model.addAttribute("carts", cart);
-        log.info("ada {} cart", cart.size());
+        List<ShoppingCartRepository.ListCart> carts = checkoutService.getListCarts(currentPrincipalName);
+        model.addAttribute("carts", carts);
+        log.info("ada {} cart", carts.size());
+        Integer grandTotal = checkoutService.calculateGrandTotal(carts);
         model.addAttribute("cart", new cartDTO());
+        model.addAttribute("grandTotal", grandTotal);
         System.out.println("mau return checkout");
         return "checkout";
     }
