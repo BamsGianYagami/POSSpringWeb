@@ -171,8 +171,8 @@ public class ViewController {
         List<Stock> stocks = stockService.getAllStock();
         model.addAttribute("stocks", stocks);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        List<ShoppingCartRepository.ListCart> carts = checkoutService.getListCarts(currentPrincipalName);
+        String username = authentication.getName();
+        List<ShoppingCartRepository.ListCart> carts = checkoutService.getListCarts(username);
         model.addAttribute("carts", carts);
         Integer grandTotal = checkoutService.calculateGrandTotal(carts);
         model.addAttribute("cart", new cartDTO());
@@ -185,8 +185,8 @@ public class ViewController {
     public RedirectView addToCart(@PathVariable Integer id, @ModelAttribute("addCart") cartDTO itemCart, RedirectAttributes redirectAttributes ){
         itemCart.setItemId(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        checkoutService.addToCart(currentPrincipalName, id, itemCart.getQty());
+        String username = authentication.getName();
+        checkoutService.addToCart(username, id, itemCart.getQty());
         final RedirectView redirectView = new RedirectView("/checkout", true);
         return redirectView;
     }
@@ -195,19 +195,19 @@ public class ViewController {
     public RedirectView removeFromCart(@PathVariable Integer id, @ModelAttribute("cart") cartDTO itemCart, RedirectAttributes redirectAttributes ){
         itemCart.setItemId(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        checkoutService.removeFromCart(currentPrincipalName, id, itemCart.getQty());
+        String username = authentication.getName();
+        checkoutService.removeFromCart(username, id, itemCart.getQty());
         final RedirectView redirectView = new RedirectView("/checkout", true);
         return redirectView;
     }
 
     @GetMapping("confirmCheckout")
-    public String confirmCheckout(){
+    public String confirmCheckout(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        log.info("return \"confirmCheckout\"; username: {}", currentPrincipalName);
-        // return "confirmCheckout";
-        return "checkout";
+        String username = authentication.getName();
+        var listCheckout = checkoutService.getListCarts(username);
+        model.addAttribute("checkout", listCheckout);
+        return "confirm-checkout";
     }
     //#endregion checkout
 }

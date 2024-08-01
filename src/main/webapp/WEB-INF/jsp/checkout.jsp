@@ -7,6 +7,8 @@
     <title>Checkout</title>
     <link href="${contextPath}/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="${contextPath}/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <link href="${contextPath}/fontawesome-free-6.5.1-web/css/brands.min.css" rel="stylesheet">
+        <script src="${contextPath}/fontawesome-free-6.5.1-web/js/all.js"></script>
     </head>
     <body>
         <jsp:include page="nav-bar.jsp"/>
@@ -32,7 +34,7 @@
                                         </c:if>
 
                                         <c:if test="${stock.qty>0}">
-                                            <form:label class="form-label mb-3" path="qty">qty (${stock.qty}): </form:label>
+                                            <form:label class="form-label mb-3" path="qty">available ${stock.qty} : </form:label>
                                             <form:input path="qty" class="form-control mb-3" type="number" value="1" min="1" max="${stock.qty}"/>
                                             <!--penjelasan:
                                                 Dengan prefix form dari JSP, ada tambahan tag path yang secara otomatis akan mapping data
@@ -53,22 +55,23 @@
             
             <div class="d-flex flex-column container-fluid col-4 border border-info border-2 my-2 py-sm-2 px-sm-2 vh-100">
                 <div class="d-flex flex-column vh-100 overflow-scroll">
-                    <div class="container">
-                        <h4>list Cart</h4>
+                    <div class="d-flex justify-content-center">
+                        <h4>list Cart <i class="fa-solid fa-basket-shopping"></i></h4>
                     </div>
                     <div class="list-group">
 
                         <c:forEach items="${carts}" var="cart">
-                            <div class="list-group-item list-group-item-action">
+                            <div class="list-group-item list-group-item-action  bg-success bg-gradient my-1">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">${cart.itemName}</h5>
                                     <small>item ID: ${cart.itemId}</small>
                                 </div>
-                                <p class="mb-1">Price: ${cart.itemPrice}</p>
-                                <form:form action="/removeFromCart/${cart.itemId}" method="post" modelAttribute="cart" class="input-group input-group-sm mb-3">
-                                    <form:label class="form-label mb-3" path="qty">qty (${cart.qty}): </form:label>
-                                    <form:input class="form-control-sm mb-3" path="qty" type="number" value="${cart.qty}" min="1" max="${cart.qty}"/>
-                                    <input type="submit" class="btn btn-primary mb-3" value="remove"/>
+                                <p class="mb-1">Price: ${cart.itemPrice} x ${cart.qty} = ${cart.itemPrice * cart.qty}</p>
+                                <form:form action="/removeFromCart/${cart.itemId}" method="post" modelAttribute="cart" class="input-group input-group-sm border border-danger border-2 bg-secondary">
+                                    <form:label class="form-label m-2" path="qty">remove item: </form:label>
+                                    <form:input class="form-control-sm m-2" path="qty" type="number" value="${cart.qty}" min="1" max="${cart.qty}"/>
+                                    <!-- <input type="submit" class="btn btn-danger m-2" value="remove"/> -->
+                                    <button class="btn btn-danger m-2"><i class="fa-solid fa-xmark"></i> remove</button>
                                 </form:form>
                             </div>
                         </c:forEach>

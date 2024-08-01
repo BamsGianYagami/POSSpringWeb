@@ -8,7 +8,7 @@
 		<link href="${contextPath}/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
 			<script src="${contextPath}/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 			<link href="${contextPath}/fontawesome-free-6.5.1-web/css/brands.min.css" rel="stylesheet">
-				<script src="${contextPath}/fontawesome-free-6.5.1-web/js/all.js"></script>
+			<script src="${contextPath}/fontawesome-free-6.5.1-web/js/all.js"></script>
 			</head>
 			<body>
 				<jsp:include page="nav-bar.jsp"/>
