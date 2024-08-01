@@ -67,7 +67,7 @@
                                 <p class="mb-1">Price: ${cart.itemPrice}</p>
                                 <form:form action="/removeFromCart/${cart.itemId}" method="post" modelAttribute="cart" class="input-group input-group-sm mb-3">
                                     <form:label class="form-label mb-3" path="qty">qty (${cart.qty}): </form:label>
-                                    <form:input class="form-control mb-3" path="qty" type="number" value="${cart.qty}" min="1" max="${cart.qty}"/>
+                                    <form:input class="form-control-sm mb-3" path="qty" type="number" value="${cart.qty}" min="1" max="${cart.qty}"/>
                                     <input type="submit" class="btn btn-primary mb-3" value="remove"/>
                                 </form:form>
                             </div>
@@ -78,6 +78,7 @@
 
                 <div class="container-fluid mt-auto mb-3 border border-1 my-2 py-sm-2 px-sm-2">
                     <b class="d-flex justify-content-end fs-4">Total Harga ${grandTotal}</b>
+                    <a href="/confirmCheckout" class="btn btn-primary mb-3" value="confirm checkout">
                 </div>
 
             </div>

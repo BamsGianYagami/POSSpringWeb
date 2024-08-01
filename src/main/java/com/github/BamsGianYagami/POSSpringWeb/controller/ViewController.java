@@ -168,18 +168,15 @@ public class ViewController {
     //#region checkout
     @GetMapping("checkout")
     public String checkout(Model model){
-        log.info("masuk checkout");
         List<Stock> stocks = stockService.getAllStock();
         model.addAttribute("stocks", stocks);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         List<ShoppingCartRepository.ListCart> carts = checkoutService.getListCarts(currentPrincipalName);
         model.addAttribute("carts", carts);
-        log.info("ada {} cart", carts.size());
         Integer grandTotal = checkoutService.calculateGrandTotal(carts);
         model.addAttribute("cart", new cartDTO());
         model.addAttribute("grandTotal", grandTotal);
-        System.out.println("mau return checkout");
         return "checkout";
     }
 
@@ -189,7 +186,6 @@ public class ViewController {
         itemCart.setItemId(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        log.info("User {} masuk ke addtoCart", currentPrincipalName);
         checkoutService.addToCart(currentPrincipalName, id, itemCart.getQty());
         final RedirectView redirectView = new RedirectView("/checkout", true);
         return redirectView;
@@ -200,10 +196,18 @@ public class ViewController {
         itemCart.setItemId(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        log.info("User {} masuk ke removeFromCart", currentPrincipalName);
         checkoutService.removeFromCart(currentPrincipalName, id, itemCart.getQty());
         final RedirectView redirectView = new RedirectView("/checkout", true);
         return redirectView;
+    }
+
+    @GetMapping("confirmCheckout")
+    public String confirmCheckout(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        log.info("return \"confirmCheckout\"; username: {}", currentPrincipalName);
+        // return "confirmCheckout";
+        return "checkout";
     }
     //#endregion checkout
 }
