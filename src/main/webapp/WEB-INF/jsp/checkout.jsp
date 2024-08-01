@@ -76,9 +76,20 @@
                     </div>
                 </div>
 
-                <div class="container-fluid mt-auto mb-3 border border-1 my-2 py-sm-2 px-sm-2">
+                <!-- old style -->
+                <!-- <div class="container-fluid mt-auto mb-3 border border-1 my-2 py-sm-2 px-sm-2">
                     <b class="d-flex justify-content-end fs-4">Total Harga ${grandTotal}</b>
                     <a href="/confirmCheckout" class="btn btn-primary mb-3" value="confirm checkout">
+                </div> -->
+
+                <!-- new style -->
+                <div class="d-flex justify-content-between bd-highlight mb-3">
+                    <div class="p-2 bd-highlight mb-3">
+                        <b class="d-flex justify-content-start">Total Harga ${grandTotal}</b>
+                    </div>
+                    <div class="p-2 bd-highlight mb-3">
+                        <a class="d-flex justify-content-end btn btn-primary btn-sm" href="/confirmCheckout" role="button">confirm checkout</a>
+                    </div>
                 </div>
 
             </div>
