@@ -1,6 +1,7 @@
 package com.github.BamsGianYagami.POSSpringWeb;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCart;
+import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCartId;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.UserInfo;
 import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
 import com.github.BamsGianYagami.POSSpringWeb.repository.UserInfoRepository;
@@ -47,6 +50,19 @@ class POSSpringWebApplicationTests {
 		try{
 			List<Integer> listInt = cartRepo.getListItemsByUsername("user");
 			Assert.isTrue(true, "size of cart in userid 1: "+listInt.size());
+		}catch(Exception e){
+			Assert.isTrue(false, e.getMessage());
+		}
+	}
+
+	@Test
+	public void testReductionOperation(){
+		System.out.println("testReductionOperation");
+		try{
+			float qty =5.0f;
+			float reduction = 4.0f;
+			qty -= reduction;
+			Assert.isTrue(1.0f == qty,"qty is not 1.0f!");
 		}catch(Exception e){
 			Assert.isTrue(false, e.getMessage());
 		}

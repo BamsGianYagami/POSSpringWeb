@@ -36,7 +36,7 @@ public class CheckoutService {
         return listItem;
     }
 
-    public void addToCart(String username, int itemId, int qty){
+    public void addToCart(String username, int itemId, float qty){
         ShoppingCartId shoppingCardID = new ShoppingCartId(username, itemId);
         Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(shoppingCardID);
         ShoppingCart shoppingCartEntity;
@@ -50,7 +50,7 @@ public class CheckoutService {
         }
     }
 
-    public void removeFromCart(String username, int itemId, int qty){
+    public void removeFromCart(String username, int itemId, float qty){
         ShoppingCartId shoppingCardID = new ShoppingCartId(username, itemId);
         Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(shoppingCardID);
         ShoppingCart shoppingCartEntity;
@@ -58,9 +58,11 @@ public class CheckoutService {
             shoppingCartEntity =  shoppingCart.get();
             if(qty==shoppingCartEntity.getQty()) {
                 shoppingCartRepository.delete(shoppingCartEntity);
+                log.info("deleted!");
             } else {
-                shoppingCartEntity.setQty(qty);
+                shoppingCartEntity.reduceQty(qty);
                 shoppingCartRepository.save(shoppingCartEntity);
+                log.info("updated!");
             }
         }
     }

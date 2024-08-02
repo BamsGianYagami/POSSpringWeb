@@ -13,7 +13,7 @@ import lombok.Setter;
 public class cartDTO {
     int itemId;
     String itemName;
-    Integer itemPrice;
-    int qty;
-    int totalPrice;
+    float itemPrice;
+    float qty;
+    float totalPrice;
 }

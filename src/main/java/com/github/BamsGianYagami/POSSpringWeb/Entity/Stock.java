@@ -20,7 +20,7 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "StockitemIdGenerator")
     int itemId;
     String itemName;
-    Integer itemPrice;
-    Float qty;
+    float itemPrice;
+    float qty;
     String unitCount;
 }

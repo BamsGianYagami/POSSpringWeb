@@ -206,7 +206,9 @@ public class ViewController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         var listCheckout = checkoutService.getListCarts(username);
+        Integer grandTotal = checkoutService.calculateGrandTotal(listCheckout);
         model.addAttribute("checkout", listCheckout);
+        model.addAttribute("grandTotal", grandTotal);
         return "confirm-checkout";
     }
     //#endregion checkout

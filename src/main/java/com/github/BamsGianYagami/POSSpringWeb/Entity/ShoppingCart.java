@@ -22,5 +22,9 @@ public class ShoppingCart {
     @Id
     private Integer itemId;
 
-    private Integer qty;
+    private float qty;
+
+    public void reduceQty(float amount){
+        qty -= amount;
+    }
 }

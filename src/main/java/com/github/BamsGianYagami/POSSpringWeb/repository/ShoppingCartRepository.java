@@ -9,10 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCart;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCartId;
-import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
 
 @Repository
-public interface ShoppingCartRepository  extends JpaRepository<ShoppingCart, ShoppingCartId>{
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, ShoppingCartId>{
 
     @Query("SELECT itemId FROM ShoppingCart WHERE username = :username")
     List<Integer> getListItemsByUsername(@Param("username") String username);
