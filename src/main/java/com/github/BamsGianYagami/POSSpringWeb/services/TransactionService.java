@@ -18,6 +18,7 @@ import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCart;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.TransactionDetail;
 import com.github.BamsGianYagami.POSSpringWeb.repository.MasterTransactionRepository;
+import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
 import com.github.BamsGianYagami.POSSpringWeb.repository.StockRepository;
 import com.github.BamsGianYagami.POSSpringWeb.repository.TransactionDetailRepository;
 
@@ -34,28 +35,39 @@ public class TransactionService {
     @Autowired
     TransactionDetailRepository transactionDetailRepository;
 
-    public Boolean SaveTransactionFromCart(ShoppingCart[] carts){
-        Set<TransactionDetail> details = new HashSet<TransactionDetail>();
+    public Boolean SaveTransactionFromCart(List<ShoppingCartRepository.ListCart> carts, String username){
 
+        //kumpulkan list barang dan hitung total keseluruhan
+        Set<TransactionDetail> details = new HashSet<TransactionDetail>();
         float grandTotal = 0.f;
         for(var cart : carts){
             Integer itemId = cart.getItemId();
             Optional<Stock> optionalStock = stockRepo.findById(itemId);
             if(optionalStock.isPresent()){
                 Stock stock = optionalStock.get();
-                TransactionDetail detail = new TransactionDetail(itemId, stock.getItemName(), cart.getQty(), stock.getItemPrice(), cart.getQty() * stock.getItemPrice());
+                float total = cart.getQty() * stock.getItemPrice();
+                TransactionDetail detail =
+                new TransactionDetail(
+                        itemId,
+                        stock.getItemName(),
+                        cart.getQty(),
+                        stock.getItemPrice(),
+                        total
+                    );
                 details.add(detail);
-                grandTotal += cart.getQty() * stock.getItemPrice();
-            } else return false;
+                grandTotal += total;
+            } else
+                return false; //jika ada data barang yang telah dihapus, kembalikan false
         }
-        MasterTransaction masterTransaction =
-        new MasterTransaction(
-            new Timestamp(Instant.now().toEpochMilli()),
-            carts[0].getUsername(),
-            grandTotal,
-            details);
 
-        masterTransactionRepo.save(masterTransaction);
+        /**Save master transaction nya supaya dapat transaction id */
+        MasterTransaction masterTransaction = new MasterTransaction(new Timestamp(Instant.now().toEpochMilli()), username);
+        masterTransaction.setGrandTotal(grandTotal);
+        Integer transactionId = masterTransactionRepo.save(masterTransaction).getId();
+
+        //**masukan transaction Id di tiap transaction detail lalu save */
+        details.stream().forEach(data -> data.setId(transactionId));
+        transactionDetailRepository.saveAll(details);
         return true;
     }
 }

@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.TransactionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
 import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
 import com.github.BamsGianYagami.POSSpringWeb.services.CheckoutService;
 import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
+import com.github.BamsGianYagami.POSSpringWeb.services.TransactionService;
 import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
 
 import jakarta.servlet.http.Cookie;
@@ -48,6 +50,9 @@ public class ViewController {
 
     @Autowired
     CheckoutService checkoutService;
+
+    @Autowired
+    TransactionService transactionService;
 
     private static Logger log = LoggerFactory.getLogger(ViewController.class);
     
@@ -206,9 +211,19 @@ public class ViewController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         var listCheckout = checkoutService.getListCarts(username);
-        Integer grandTotal = checkoutService.calculateGrandTotal(listCheckout);
+        Boolean isSaved = transactionService.SaveTransactionFromCart(listCheckout, username);
         model.addAttribute("checkout", listCheckout);
-        model.addAttribute("grandTotal", grandTotal);
+        if(isSaved){
+            Integer grandTotal = checkoutService.calculateGrandTotal(listCheckout);
+            model.addAttribute("grandTotal", grandTotal);
+
+            try{
+                checkoutService.removeAllFromCart(username);
+            }catch(TransactionException e){
+                log.error("can not delete shopping char in user id {} : {}", username, e.getMessage());
+            }
+            stockService.updateStockAfterCommitTransaction(listCheckout);
+        }
         return "confirm-checkout";
     }
     //#endregion checkout

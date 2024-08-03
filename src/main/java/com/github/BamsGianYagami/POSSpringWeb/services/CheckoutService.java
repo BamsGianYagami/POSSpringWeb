@@ -67,6 +67,10 @@ public class CheckoutService {
         }
     }
 
+    public void removeAllFromCart(String username){
+        shoppingCartRepository.removeAllFromCart(username);
+    }
+
     public List<ShoppingCartRepository.ListCart> getListCarts(String username){
         
         List<ShoppingCartRepository.ListCart> listCheckout = shoppingCartRepository.getListCartByUsername(username);

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
+import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
 import com.github.BamsGianYagami.POSSpringWeb.repository.StockRepository;
 
 @Service
@@ -54,5 +55,14 @@ public class StockService {
     public String deleteStock(Integer id){
         repository.deleteById(id);
         return "Stock id: "+id+" has been deleted!";
+    }
+
+    public void updateStockAfterCommitTransaction(List<ShoppingCartRepository.ListCart> carts){
+        carts.forEach(cart ->{
+            Stock stock = getStock(cart.getItemId());
+            float newQty = stock.getQty() - cart.getQty();
+            stock.setQty(newQty);
+            repository.save(stock);
+        });
     }
 }

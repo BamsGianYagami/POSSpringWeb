@@ -3,6 +3,7 @@ package com.github.BamsGianYagami.POSSpringWeb.Entity;
 import java.sql.Timestamp;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,16 +29,20 @@ public class MasterTransaction {
     String username;
     float grandTotal;
 
-    @OneToMany
-    @JoinColumn(name="id", referencedColumnName = "id")
-    Set<TransactionDetail> transactionDetails;
+    // @OneToMany(cascade = CascadeType.ALL)
+    // @JoinColumn(name="id", referencedColumnName = "id")
+    // Set<TransactionDetail> transactionDetails;
 
-    public MasterTransaction(Timestamp transactionTime, String username, float grandTotal,
-            Set<TransactionDetail> transactionDetails) {
+    // public MasterTransaction(Timestamp transactionTime, String username, float grandTotal,
+    //         Set<TransactionDetail> transactionDetails) {
+    //     this.transactionTime = transactionTime;
+    //     this.username = username;
+    //     this.grandTotal = grandTotal;
+    //     this.transactionDetails = transactionDetails;
+    // }
+
+    public MasterTransaction(Timestamp transactionTime, String username) {
         this.transactionTime = transactionTime;
         this.username = username;
-        this.grandTotal = grandTotal;
-        this.transactionDetails = transactionDetails;
     }
-
 }
