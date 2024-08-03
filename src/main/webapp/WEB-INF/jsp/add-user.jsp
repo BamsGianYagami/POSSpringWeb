@@ -26,7 +26,7 @@
             <form:label class="form-label" path="email">Email: </form:label> <form:input path="email" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="password">encrypted Password: </form:label> <form:input path="password" class="form-control"/>
+            <form:label class="form-label" path="password">Password: </form:label> <form:input path="password" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
             <form:label class="form-label" path="roles">Roles: </form:label> <form:input path="roles" class="form-control"/>

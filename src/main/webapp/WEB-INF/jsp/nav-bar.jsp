@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #76abfaf6;">
-  <a class="navbar-brand">Nama sistem disini</a>
+  <a class="navbar-brand">MAESTRO</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/dashboard">Home Dashboard<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/dashboard">Home Dashboard</a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link" href="/main/addStock">Add Stock</a>
@@ -32,6 +32,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/checkout">Checkout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/transaction">Transaction History</a>
       </li>
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

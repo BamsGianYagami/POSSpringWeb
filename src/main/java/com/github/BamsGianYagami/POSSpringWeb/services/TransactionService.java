@@ -2,7 +2,6 @@ package com.github.BamsGianYagami.POSSpringWeb.services;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +10,11 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.github.BamsGianYagami.POSSpringWeb.Entity.MasterTransaction;
-import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCart;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.TransactionDetail;
 import com.github.BamsGianYagami.POSSpringWeb.repository.MasterTransactionRepository;
@@ -69,5 +69,10 @@ public class TransactionService {
         details.stream().forEach(data -> data.setId(transactionId));
         transactionDetailRepository.saveAll(details);
         return true;
+    }
+
+    public List<MasterTransaction> getTransactionSummary(){
+        Sort sortBy = Sort.by(Direction.DESC, "transactionTime");
+        return masterTransactionRepo.findAll(sortBy);
     }
 }

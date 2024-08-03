@@ -1,12 +1,6 @@
 package com.github.BamsGianYagami.POSSpringWeb.controller;
 
-import java.lang.ProcessBuilder.Redirect;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.TransactionException;
 import org.slf4j.Logger;
@@ -14,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.UserInfo;
 import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
@@ -35,9 +26,6 @@ import com.github.BamsGianYagami.POSSpringWeb.services.StockService;
 import com.github.BamsGianYagami.POSSpringWeb.services.TransactionService;
 import com.github.BamsGianYagami.POSSpringWeb.services.UserInfoService;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class ViewController {
@@ -227,4 +215,13 @@ public class ViewController {
         return "confirm-checkout";
     }
     //#endregion checkout
+
+    //#region transaction history
+    @GetMapping("transaction")
+    public String transaction(Model model){
+        var summaries = transactionService.getTransactionSummary();
+        model.addAttribute("summaries", summaries);
+        return "transaction-summary";
+    }
+    //#endregion transaction history
 }
