@@ -41,7 +41,7 @@ public class WebSecurityConfig {
 		http
 			// .csrf().disable()
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("*/css/*", "*/js/*", "*/svg/*"
+				.requestMatchers("*/css/*", "*/js/*", "*/svg/*", "/images/*"
 				,"/WEB-INF/jsp/index.jsp" //path asli dari JSP juga harus di permit!
 				).permitAll()
 				.anyRequest().authenticated()

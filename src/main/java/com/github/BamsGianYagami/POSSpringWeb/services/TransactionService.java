@@ -75,4 +75,8 @@ public class TransactionService {
         Sort sortBy = Sort.by(Direction.DESC, "transactionTime");
         return masterTransactionRepo.findAll(sortBy);
     }
+
+    public List<TransactionDetail> getTransactionDetail(Integer id){
+        return transactionDetailRepository.getGransactionDetailById(id);
+    }
 }

@@ -223,5 +223,12 @@ public class ViewController {
         model.addAttribute("summaries", summaries);
         return "transaction-summary";
     }
+
+    @GetMapping("transaction/{id}")
+    public String transaction(@PathVariable Integer id, Model model){
+        var transactionDetail = transactionService.getTransactionDetail(id);
+        model.addAttribute("transactionDetail", transactionDetail);
+        return "transaction-detail";
+    }
     //#endregion transaction history
 }
