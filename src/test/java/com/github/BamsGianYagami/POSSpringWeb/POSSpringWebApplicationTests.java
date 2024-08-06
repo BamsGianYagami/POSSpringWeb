@@ -1,11 +1,6 @@
 package com.github.BamsGianYagami.POSSpringWeb;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.BamsGianYagami.POSSpringWeb.Entity.MasterTransaction;
-import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCart;
-import com.github.BamsGianYagami.POSSpringWeb.Entity.ShoppingCartId;
-import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
-import com.github.BamsGianYagami.POSSpringWeb.Entity.TransactionDetail;
 import com.github.BamsGianYagami.POSSpringWeb.Entity.UserInfo;
 import com.github.BamsGianYagami.POSSpringWeb.repository.MasterTransactionRepository;
 import com.github.BamsGianYagami.POSSpringWeb.repository.ShoppingCartRepository;
@@ -43,7 +33,6 @@ class POSSpringWebApplicationTests {
 	void contextLoads() {
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	public void testPrint(){
 		List<UserInfo> usersInfo = userInfoRepo.findAll();
