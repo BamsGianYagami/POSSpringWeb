@@ -51,9 +51,9 @@ public class ViewController {
         return "index";
     }
 
-    @GetMapping("dashboard")
-    public String dashboard(){
-        return "dashboard";
+    @GetMapping("home")
+    public String home(){
+        return "home";
     }
 
 
