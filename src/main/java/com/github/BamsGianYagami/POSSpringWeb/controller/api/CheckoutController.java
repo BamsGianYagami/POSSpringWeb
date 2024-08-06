@@ -1,4 +1,4 @@
-package com.github.BamsGianYagami.POSSpringWeb.controller;
+package com.github.BamsGianYagami.POSSpringWeb.controller.api;
 
 import java.util.List;
 
@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.BamsGianYagami.POSSpringWeb.Entity.Stock;
 import com.github.BamsGianYagami.POSSpringWeb.dto.CheckoutTransactionDTO;
 import com.github.BamsGianYagami.POSSpringWeb.dto.cartDTO;
 import com.github.BamsGianYagami.POSSpringWeb.services.CheckoutService;
 
 @RestController
-@RequestMapping(path="checkout")
+@RequestMapping(path="api/checkout")
 public class CheckoutController {
     public static Logger log = LoggerFactory.getLogger(CheckoutController.class);
 

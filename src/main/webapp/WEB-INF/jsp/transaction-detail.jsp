@@ -33,7 +33,7 @@
                                 <td>${detail.itemName}</td>
                                 <td>${detail.qty}</td>
                                 <td>${detail.itemPrice}</td>
-                                <td>${stocks.totalPrice}</td>
+                                <td>${detail.totalPrice}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
