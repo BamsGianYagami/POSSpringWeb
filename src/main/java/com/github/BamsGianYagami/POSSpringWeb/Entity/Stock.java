@@ -22,5 +22,4 @@ public class Stock {
     String itemName;
     float itemPrice;
     float qty;
-    String unitCount;
 }

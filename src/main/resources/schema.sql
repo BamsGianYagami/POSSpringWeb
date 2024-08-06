@@ -12,7 +12,6 @@ CREATE TABLE STOCK (
     item_name varchar(30),
     item_price float,
     qty FLOAT,
-    unit_count varchar(30),
     primary key (item_id)
 );
 CREATE TABLE SHOPPING_CART(
