@@ -22,7 +22,6 @@
                             <c:forEach items="${stocks}" var="stock">
                                 <div class="col p-1">
                                     <div class="card item-card">
-                                        <img src="..." class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title">${stock.itemName}</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">item id: ${stock.itemId}</h6>

@@ -26,9 +26,6 @@
             <form:label class="form-label" path="qty">Banyaknya Stock: </form:label> <form:input path="qty" class="form-control"/>
           </div>
           <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
-            <form:label class="form-label" path="unitCount">Satuan Unit (kg, pcs dan sebagainya): </form:label> <form:input path="unitCount" class="form-control"/>
-          </div>
-          <div class="mb-3 border border-1 my-2 py-sm-2 px-sm-2">
             <input type="submit" value="submit" class="btn btn-primary"/>
           </div>
         </form:form>

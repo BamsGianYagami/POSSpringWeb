@@ -45,7 +45,6 @@ public class StockService {
             existing.setItemName(newData.getItemName());
             existing.setItemPrice(newData.getItemPrice());
             existing.setQty(newData.getQty());
-            existing.setUnitCount(newData.getUnitCount());
             repository.save(existing);
             return existing;
         } else
