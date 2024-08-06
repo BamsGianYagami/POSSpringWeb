@@ -79,4 +79,12 @@ public class TransactionService {
     public List<TransactionDetail> getTransactionDetail(Integer id){
         return transactionDetailRepository.getGransactionDetailById(id);
     }
+
+    public float calculateGrandTotal(List<TransactionDetail> transactionDetail) {
+        float grandTotal = 0;
+        for(TransactionDetail detail : transactionDetail){
+            grandTotal += detail.getTotalPrice();
+        }
+        return grandTotal;
+    }
 }

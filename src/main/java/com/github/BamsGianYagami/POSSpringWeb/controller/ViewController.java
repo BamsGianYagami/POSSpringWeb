@@ -228,6 +228,8 @@ public class ViewController {
     public String transaction(@PathVariable Integer id, Model model){
         var transactionDetail = transactionService.getTransactionDetail(id);
         model.addAttribute("transactionDetail", transactionDetail);
+        var grandTotal = transactionService.calculateGrandTotal(transactionDetail);
+        model.addAttribute("grandTotal", grandTotal);
         return "transaction-detail";
     }
     //#endregion transaction history
