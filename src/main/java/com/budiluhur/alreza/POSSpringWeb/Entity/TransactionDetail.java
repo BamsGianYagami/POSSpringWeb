@@ -23,16 +23,12 @@ public class TransactionDetail {
     @Id
     Integer itemId;
 
-    String itemName;
     float qty;
-    float itemPrice;
     float totalPrice;
     
-    public TransactionDetail(Integer itemId, String itemName, float qty, float itemPrice, float totalPrice) {
+    public TransactionDetail(Integer itemId, float qty, float totalPrice) {
         this.itemId = itemId;
-        this.itemName = itemName;
         this.qty = qty;
-        this.itemPrice = itemPrice;
         this.totalPrice = totalPrice;
     }
 

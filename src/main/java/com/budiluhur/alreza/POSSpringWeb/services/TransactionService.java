@@ -21,6 +21,7 @@ import com.budiluhur.alreza.POSSpringWeb.repository.MasterTransactionRepository;
 import com.budiluhur.alreza.POSSpringWeb.repository.ShoppingCartRepository;
 import com.budiluhur.alreza.POSSpringWeb.repository.StockRepository;
 import com.budiluhur.alreza.POSSpringWeb.repository.TransactionDetailRepository;
+import com.budiluhur.alreza.POSSpringWeb.repository.TransactionDetailRepository.listTransactionDetail;
 
 @Service
 public class TransactionService {
@@ -35,7 +36,7 @@ public class TransactionService {
     @Autowired
     TransactionDetailRepository transactionDetailRepository;
 
-    public Boolean SaveTransactionFromCart(List<ShoppingCartRepository.ListCart> carts, String username){
+    public Integer SaveTransactionFromCart(List<ShoppingCartRepository.ListCart> carts, String username){
 
         //kumpulkan list barang dan hitung total keseluruhan
         Set<TransactionDetail> details = new HashSet<TransactionDetail>();
@@ -49,15 +50,13 @@ public class TransactionService {
                 TransactionDetail detail =
                 new TransactionDetail(
                         itemId,
-                        stock.getItemName(),
                         cart.getQty(),
-                        stock.getItemPrice(),
                         total
                     );
                 details.add(detail);
                 grandTotal += total;
             } else
-                return false; //jika ada data barang yang telah dihapus, kembalikan false
+                return null; //jika ada data barang yang telah dihapus, kembalikan null
         }
 
         /**Save master transaction nya supaya dapat transaction id */
@@ -68,7 +67,7 @@ public class TransactionService {
         //**masukan transaction Id di tiap transaction detail lalu save */
         details.stream().forEach(data -> data.setId(transactionId));
         transactionDetailRepository.saveAll(details);
-        return true;
+        return transactionId;
     }
 
     public List<MasterTransaction> getTransactionSummary(){
@@ -76,13 +75,17 @@ public class TransactionService {
         return masterTransactionRepo.findAll(sortBy);
     }
 
-    public List<TransactionDetail> getTransactionDetail(Integer id){
+    public MasterTransaction getTransaction(Integer id){
+        return masterTransactionRepo.findById(id).get();
+    }
+
+    public List<listTransactionDetail> getTransactionDetail(Integer id){
         return transactionDetailRepository.getGransactionDetailById(id);
     }
 
-    public float calculateGrandTotal(List<TransactionDetail> transactionDetail) {
+    public float calculateGrandTotal(List<listTransactionDetail> transactionDetail) {
         float grandTotal = 0;
-        for(TransactionDetail detail : transactionDetail){
+        for(listTransactionDetail detail : transactionDetail){
             grandTotal += detail.getTotalPrice();
         }
         return grandTotal;

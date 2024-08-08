@@ -6,6 +6,9 @@ import org.hibernate.TransactionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,7 @@ import com.budiluhur.alreza.POSSpringWeb.Entity.UserInfo;
 import com.budiluhur.alreza.POSSpringWeb.dto.cartDTO;
 import com.budiluhur.alreza.POSSpringWeb.repository.ShoppingCartRepository;
 import com.budiluhur.alreza.POSSpringWeb.services.CheckoutService;
+import com.budiluhur.alreza.POSSpringWeb.services.JasperReportService;
 import com.budiluhur.alreza.POSSpringWeb.services.StockService;
 import com.budiluhur.alreza.POSSpringWeb.services.TransactionService;
 import com.budiluhur.alreza.POSSpringWeb.services.UserInfoService;
@@ -41,6 +45,9 @@ public class ViewController {
 
     @Autowired
     TransactionService transactionService;
+
+    @Autowired
+    JasperReportService jasperService;
 
     private static Logger log = LoggerFactory.getLogger(ViewController.class);
     
@@ -199,9 +206,10 @@ public class ViewController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         var listCheckout = checkoutService.getListCarts(username);
-        Boolean isSaved = transactionService.SaveTransactionFromCart(listCheckout, username);
+        Integer transactionId = transactionService.SaveTransactionFromCart(listCheckout, username);
         model.addAttribute("checkout", listCheckout);
-        if(isSaved){
+        model.addAttribute("transactionId", transactionId);
+        if(transactionId !=null){
             Integer grandTotal = checkoutService.calculateGrandTotal(listCheckout);
             model.addAttribute("grandTotal", grandTotal);
 
@@ -230,7 +238,21 @@ public class ViewController {
         model.addAttribute("transactionDetail", transactionDetail);
         var grandTotal = transactionService.calculateGrandTotal(transactionDetail);
         model.addAttribute("grandTotal", grandTotal);
+        model.addAttribute("transactionId", id);
         return "transaction-detail";
+    }
+
+    @GetMapping("print-invoice/{id}")
+    public HttpEntity<Object> print(@PathVariable Integer id) throws Exception{
+        var detail = transactionService.getTransactionDetail(id);
+        var summary = transactionService.getTransaction(id);
+        byte[] bytes = jasperService.generateInvoicePDF(summary,detail);
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_PDF);
+        header.setContentLength(bytes.length);
+        header.add("Content-Disposition", "inline; filename=" + "maestro-invoice-.pdf");
+        HttpEntity<Object> item = new HttpEntity<Object>(bytes, header);
+        return item;
     }
     //#endregion transaction history
 }

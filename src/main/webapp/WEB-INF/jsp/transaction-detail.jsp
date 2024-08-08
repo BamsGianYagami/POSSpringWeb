@@ -47,6 +47,9 @@
                 <div class="p-2 bd-highlight mb-3">
                     <a class="d-flex justify-content-end btn btn-success btn-sm" href="/transaction" role="button">Kembali</a>
                 </div>
+                <div class="p-2 bd-highlight mb-3">
+                    <a class="d-flex justify-content-end btn btn-success btn-sm" href="/print-invoice/${transactionId}" role="button">Cetak invoice</a>
+                </div>
             </div>
 
         </div>

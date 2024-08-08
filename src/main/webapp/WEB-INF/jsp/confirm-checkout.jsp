@@ -40,6 +40,7 @@
                     <b class="d-flex justify-content-end fs-4">Total Harga ${grandTotal}</b>
                     <div class="d-flex justify-content-center fs-4">
                         <a class="btn btn-primary btn-lg px-5" href="/checkout" role="button"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</i></a>
+                        <a class="btn btn-primary btn-lg px-5" href="/print-invoice/${transactionId}" role="button">Cetak Invoice</i></a>
                     </div>
                 </div>
             </div>
